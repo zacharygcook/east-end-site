@@ -1,0 +1,95 @@
+
+/* Custom navbar styles
+-------------------------------------------------- */
+
+/* Some decent yet simple docs on making your own navbar:
+  https://www.w3schools.com/css/css_navbar.asp */
+
+.zach-navbar-wrapper {
+  height: 80px;
+  width: 100%;
+  background-color: black;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.company-logo-wrapper {
+  display: inline-block;
+  height: 100%;
+  width: 340px;
+}
+
+.navbar-company-logo {
+  /* Interesting information about getting the image to not offset down a few inches like it was doing
+      https://stackoverflow.com/questions/21932860/image-moving-down-inside-of-div */
+  height: 70px;
+  width: auto;
+  display: block;
+}
+
+.navbar-main-options-wrapper {
+  width: 600px;
+  display: inline-block;
+  height: 100%;
+  float: right;
+}
+
+.zach-navbar-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 70px;
+}
+
+.zach-navbar-li {
+  display: inline-block;
+  float: left; /* key to getting the 'li's to not offset from 'ul' */
+  vertical-align: middle;
+  line-height: 70px;
+}
+
+.zach-navbar-li a {
+  display: block;
+  min-width: 75px;
+  text-align: center;
+  margin-right: 7px;
+  margin-left: 7px;
+  color: white;
+  line-height: 70px;
+}
+
+.zach-navbar-li a:hover {
+  text-decoration: none;
+  color: #c3bebe;
+}
+
+.zach-navbar-inner-content-wrapper {
+  margin: 0 auto;
+  height: 100%;
+}
+
+@media (min-width: 1200px) {
+  .zach-navbar-inner-content-wrapper {
+    width: 1170px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .zach-navbar-inner-content-wrapper {
+    width: 970px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+  .zach-navbar-inner-content-wrapper {
+    width: 750px;
+  }
+}
+
+@media (max-width: 768px) {
+  .zach-navbar-inner-content-wrapper {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
