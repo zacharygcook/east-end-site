@@ -11,6 +11,7 @@
   background-color: #111111;
   padding-bottom: 5px;
   padding-top: 5px;
+  font-family: 'Montserrat';
 }
 
 .company-logo-wrapper {
@@ -32,13 +33,16 @@
   display: inline-block;
   height: 100%;
   float: right;
+  padding-right: 30px;
 }
+
 
 .zach-navbar-ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   height: 70px;
+  float: right;
 }
 
 .zach-navbar-li {
@@ -52,15 +56,15 @@
   display: block;
   min-width: 75px;
   text-align: center;
-  margin-right: 7px;
-  margin-left: 7px;
+  margin-right: 14px;
+  margin-left: 14px;
   color: white;
   line-height: 70px;
 }
 
 .zach-navbar-li a:hover {
   text-decoration: none;
-  color: #c3bebe;
+  color: #00b140;
 }
 
 .zach-navbar-inner-content-wrapper {
@@ -92,4 +96,76 @@
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+.navbar-connect-with-us-wrapper {
+  width: 170px;
+  display: inline-block;
+  height: 100%;
+  float: right;
+}
+
+.top-connect-with-us-section-nav {
+  width: 100%;
+  height: 25px;
+  padding-top: 8px;
+  text-align: center;
+}
+
+.bottom-connect-with-us-section-nav {
+  width: 100%;
+  height: 45px;
+  padding-top: 8px;
+  text-align: center;
+}
+
+.top-navbar-tiny-text {
+  font-size: 14px;
+}
+
+.contact-us-link {
+  color: white;
+}
+
+.contact-us-link:hover {
+  text-decoration: none;
+  color: #00b140;
+}
+
+/* 
+  Got the idea for how to make this image change on hover state work from this great StackOverflow article:
+  https://stackoverflow.com/questions/4717117/css-image-link-change-on-hover
+*/
+
+.top-nav-social-media-link {
+  padding: 0;
+  margin: 0;
+}
+
+.top-nav-social-media-link:hover {
+  text-decoration: none;
+}
+
+.top-nav-social-media-link:hover img.tiny-navbar-social-img {
+  display: none;
+}
+
+.top-nav-social-media-link:hover img.tiny-navbar-social-img-hover {
+  display: inherit;
+}
+
+.tiny-navbar-social-img {
+  display: inherit;
+  width: 24px;
+  height: auto;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+.tiny-navbar-social-img-hover {
+  display: none;
+  width: 24px;
+  height: auto;
+  margin-right: 2px;
+  margin-left: 2px;
 }
