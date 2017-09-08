@@ -25,22 +25,10 @@
 .footer-brand-logo {
   width: 420px;
   height: auto;
-  margin-bottom: 25px;
-}
-
-.footer-top-content-left-sub-header {
-  font-size: 18px;
-  margin-top: 0;
-  margin-bottom: 5px;
-  padding: 0;
-}
-
-.footer-top-content-left-sub-header a {
-  color: white;
 }
 
 .footer-top-content-right-section {
-  padding-top: 25px;
+  padding-top: 40px;
   padding-left: 30px;
 }
 
@@ -51,6 +39,14 @@
   padding: 0;
 }
 
+.footer-top-right-section-sub-header a {
+  color: white;
+}
+
+.footer-top-right-section-sub-header a:hover {
+  color: white;
+}
+
 .custom-top-right-section-hr {
   width: 90px;
   border: 1px solid white;
@@ -58,15 +54,11 @@
 }
 
 .footer-top-right-section-sub-header {
-  font-size: 14px;
+  font-size: 18px;
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 15px;
   padding: 0;
 }
-
-
-
-
 
 
 .bottom-footer-content {
