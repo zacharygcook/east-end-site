@@ -85,10 +85,43 @@
 	OUR ADVANTAGES WRAPPER STYLING
 */
 
+.little-ribbon-wrapper {
+	height: 46px;
+	width: 100%;
+	background-color: #a9a8ab;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.inner-little-ribbon-wrapper {
+	width: 1100px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.service-ribbon-text {
+	font-size: 30px;
+	line-height: 46px;
+	letter-spacing: 7px;
+	color: white;
+	font-weight: 600;
+	min-width: 70px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.tear-drop-separator {
+	height: 26px;
+	width: auto;
+	margin: 0;
+	margin-top: -10px;
+	padding: 0;
+	position: relative;
+}
+
+
 .our-advantages-section-wrapper {
 	min-height: 400px;
 	width: 100%;
-	border: 1px solid grey;
 	padding-top: 25px;
 	padding-bottom: 25px;
 	font-family: 'Montserrat', sans-serif;

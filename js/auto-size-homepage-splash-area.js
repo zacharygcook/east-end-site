@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+	var windowHeight = $(window).height();
+	var newHeight = windowHeight - 80;
+	$('#splash-wrapper').css("height", newHeight);
+
 	$(window).on('resize', function() {
 		console.log("Browser got resized");
 
