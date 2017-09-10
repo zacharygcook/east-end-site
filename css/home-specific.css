@@ -1,0 +1,200 @@
+
+.home-page-section-wrapper {
+	width: 100%;
+	padding-left: 80px;
+	padding-right: 80px;
+}
+
+@media (max-width: 1500px) {
+	.home-page-section-wrapper {
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+/*
+	SPLASH WRAPPER STYLING
+*/
+
+.home-splash-content-wrapper {
+	background-image: url('http://res.cloudinary.com/zacharycook/image/upload/v1505079188/screen-printing-machine-splash-backdrop-darkened_gxgo4y.jpg');
+	height: 890px;
+	width: 100%;
+	padding-top: 100px;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.home-page-tagline-holder {
+	width: 680px;
+	margin: 0 auto;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: white;
+	text-align: center;
+	font-size: 72px;
+	font-weight: 800;
+	line-height: 78px;
+}
+
+.home-page-tagline-holder .green {
+	color: #02a03c;
+}
+
+.home-page-tagline-sub-header {
+	width: 1000px;
+	margin: 0 auto;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: white;
+	font-size: 30px;
+	line-height: 34px;
+}
+
+.homepage-splash-zach-btn {
+	width: 420px;
+	height: 80px;
+	margin: 0 auto;
+	margin-top: 35px;
+	border: 3px solid #02a03c;
+	padding: 0;
+	text-align: center;
+	color: white;
+	font-size: 40px;
+	line-height: 80px;
+	font-weight: 600;
+}
+
+.homepage-splash-zach-btn:hover {
+	cursor: pointer;
+	background:
+	    linear-gradient(
+	      rgba(0, 0, 0, 0.8), 
+	      rgba(0, 0, 0, 0.8)
+	    );
+}
+/*
+	END SPLASH WRAPPER STYLING
+*/
+
+
+
+
+/*
+	OUR ADVANTAGES WRAPPER STYLING
+*/
+
+.our-advantages-section-wrapper {
+	min-height: 400px;
+	width: 100%;
+	border: 1px solid grey;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.quarter-width-feature-wrapper {
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.advantages-icon-row {
+	height: 240px;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.feature-icon {
+	height: 100%;
+	width: auto;
+}
+
+.our-advantages-sub-header {
+	padding-top: 10px;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 21px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+	END OUR ADVANTAGES WRAPPER STYLING
+*/
+
+
+
+
+/*
+	OUR BRANDS WRAPPER STYLING
+*/
+
+.our-brands-section-wrapper {
+	height: 700px;
+	width: 100%;
+	border: 1px solid grey;
+}
+
+
+
+/*
+	END OUR BRANDS WRAPPER STYLING
+*/
+
+
+
+
+/*
+	OUR SERVICES WRAPPER STYLING
+*/
+
+.our-services-section-wrapper {
+	height: 500px;
+	width: 100%;
+	border: 1px solid grey;
+}
+
+
+
+/*
+	END OUR SERVICES WRAPPER STYLING
+*/
+
+
+
+
+/*
+	CONTACT US WRAPPER STYLING
+*/
+
+.home-contact-us-section-wrapper {
+	height: 1200px;
+	width: 100%;
+	border: 1px solid grey;
+}
+
+
+
+/*
+	END CONTACT US WRAPPER STYLING
+*/
+
+
+
+
+
