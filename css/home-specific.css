@@ -50,9 +50,9 @@
 
 .home-splash-content-wrapper {
 	background-image: url('http://res.cloudinary.com/zacharycook/image/upload/v1505079188/screen-printing-machine-splash-backdrop-darkened_gxgo4y.jpg');
-	height: 890px;
+	min-height: 760px;
 	width: 100%;
-	padding-top: 100px;
+	padding-top: 220px;
 	text-align: center;
 	font-family: 'Montserrat', sans-serif;
 }
@@ -315,13 +315,85 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
+.contact-info-block {
+	width: 500px;
+	min-height: 300px;
+	padding-left: 45px;
+	padding-top: 45px;
+	padding-bottom: 45px;
+	margin-right: 155px;
+	background-color: #080808;
+	color: white;
+	float: right;
+}
+
+.contact-info-header {
+	color: #02a03c;
+	font-weight: 600;
+	margin-bottom: 30px;
+}
+
+.contact-info-subheader {
+	font-weight: 600;
+	padding-top: 35px;
+}
+
+.contact-info-line {
+	margin-bottom: 5px;
+	font-size: 20px;
+	line-height: 22px;
+}
+
+.contact-us-section-small-text {
+	width: 400px;
+}
+
+.fancy-contact-us-form {
+	width: 700px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}
+
+.fancy-form-field-header {
+	padding-bottom: 0;
+	margin-bottom: 0;
+	padding-top: 25px;
+}
+
+.fancy-contact-form-text-input {
+	border: none;
+	background-color: #dcd8d6;
+	height: 36px;
+	width: 400px;
+	font-size: 24px;
+	line-height: 36px;
+	padding-left: 5px;
+}
+
+.fancy-contact-form-message {
+	border: none;
+	background-color: #dcd8d6;	
+	width: 400px;
+}
+
+.fancy-contact-us-form-submit-btn {
+	width: 400px;
+	height: 35px;
+	margin-top: 15px;
+	text-align: center;
+	font-size: 26px;
+	line-height: 35px;
+	background-color: #080808;
+	color: #e5e5e5;
+}
+
+.fancy-contact-us-form-submit-btn:hover {
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
 
 
 /*
 	END CONTACT US WRAPPER STYLING
 */
-
-
-
-
-

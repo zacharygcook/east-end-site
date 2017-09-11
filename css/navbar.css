@@ -6,6 +6,9 @@
   https://www.w3schools.com/css/css_navbar.asp */
 
 .zach-navbar-wrapper {
+  position: fixed;
+  top: 0px;
+  z-index: 99;
   height: 80px;
   width: 100%;
   background-color: #121212;
