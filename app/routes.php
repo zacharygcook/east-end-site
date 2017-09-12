@@ -90,9 +90,4 @@
             ];
             return $this->view->render($response, 'quote-request.twig', $vars);    
         });
-
-
-        $this->get('simple-contact-email', function (Request $request, Response $response, $args) {
-            
-        })
     });
