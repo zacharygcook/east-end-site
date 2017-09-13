@@ -2,9 +2,131 @@
 
 {% block content %}
 
-	<div class="container" style="padding-top: 100px; text-align: center;">
+	<div class="container quote-request-master-wrapper" >
 
-		<h1>QUOTE REQUEST PAGE</h1>
+		<h2 class="quote-request-header">QUOTE REQUEST FORM</h2>
+
+		<h4 class="quote-request-sub-header">
+			No two print jobs are alike. The best way for us to get an accurate quote is to answer the few questions in the form below. 
+		</h4>
+		<h4 class="quote-request-sub-header">
+			With this information, we will provide you with a quote within 24 hours of receiving your request.
+		</h4>
+
+		<form id="quote-request-form" action="{{ base_url() }}/quote-request-submit" method="POST" enctype="multipart/form-data">
+
+			<h3 class="qr-form-section-header">Contact Info</h3>
+
+			<p class="qr-form-input-label">First and Last Name</p>
+			<input class="qr-form-input " type="text" name="firstName" />
+
+			<p class="qr-form-input-label">Organization Name</p>
+			<input class="qr-form-input " type="text" name="orgName" />
+
+			<p class="qr-form-input-label">Email Address</p>
+			<input class="qr-form-input " type="email" name="emailAddress" />
+
+			<p class="qr-form-input-label">Phone Number</p>
+			<input class="qr-form-input " type="telephone" name="phoneNumber" />
+
+			<h3 class="qr-form-section-header" style="padding-top: 30px;">About Your Gear</h3>
+
+			<!-- Big drop-down with product category -->
+			<p class="qr-form-input-label">Items to be Printed or Embroidered</p>
+			<select class="qr-form-input " name="apparelType"  >
+				<option selected="selected"></option>
+				<option value="short-sleeve-shirts">Short Sleeve Shirts</option>
+				<option value="long-sleeve-shirts">Long Sleeve Shirts</option>
+				<option value="tank-tops">Tank Tops</option>
+				<option value="hoodies">Hoodies</option>
+				<option value="hats">Hats</option>
+				<option value="Other">Other</option>
+			</select>
+
+			<p class="qr-form-input-label">Desired Quantity</p>
+			<input type="number" class="qr-form-input" name="desiredQuantity" />
+
+			<p class="qr-form-input-label">Color of Items</p>
+			<input type="text" class="qr-form-input" name="colorOfItems" />
+
+			<p style="font-size: 1.2em;" class="qr-form-input-label">Already Know What Design You Want on Your Items?</p>
+
+			<button class="qr-form-option-btn">Yes</button>
+			<button class="qr-form-option-btn">No</button>
+
+			<div class="know-what-they-want-on-design">
+				<p class="qr-form-input-label">Decoration Location #1</p>
+				<select class="qr-form-input " name="decorationLocationOne" >
+					<option selected="selected"></option>
+					<option value="full-front">Full Front</option>
+					<option value="full-back">Full Back</option>
+					<option value="left-chest">Left Chest</option>
+					<option value="top-back">Top Back</option>
+					<option value="left-sleeve">Left Sleeve</option>
+					<option value="right-sleeve">Right Sleeve</option>
+					<option value="other">Other</option>
+				</select>
+
+				<p class="qr-form-input-label">Number of Colors for Location #1</p>
+				<input class="qr-form-input " type="text" name="orgName" />
+
+
+				<p class="qr-form-input-label">Design / Art File for Location #1</p>
+				<input class="qr-form-input " type="text" name="orgName" />
+
+
+				<p class="qr-form-input-label">Decoration Location #2</p>
+				<select class="qr-form-input " name="decorationLocationTwo" >
+					<option selected="selected"></option>
+					<option value="full-front">Full Front</option>
+					<option value="full-back">Full Back</option>
+					<option value="left-chest">Left Chest</option>
+					<option value="top-back">Top Back</option>
+					<option value="left-sleeve">Left Sleeve</option>
+					<option value="right-sleeve">Right Sleeve</option>
+					<option value="other">Other</option>
+				</select>
+
+
+				<p class="qr-form-input-label">Number of Colors for Location #2</p>
+				<input class="qr-form-input " type="text" name="orgName" />
+
+
+				<p class="qr-form-input-label">Design / Art File for Location #2</p>
+				<input class="qr-form-input " type="text" name="orgName" />
+
+
+
+			</div>
+
+			<div class="know-what-they-want-on-design">
+
+
+
+
+			</div>
+
+			<h3 class="qr-form-section-header" style="padding-top: 30px;">Delivery / Budget Info</h3>
+
+			<p class="qr-form-input-label">When do you need these by?</p>
+			<input class="qr-form-input " type="date" name="deliveryDate" />
+
+			<p class="qr-form-input-label">Where would the order be getting delivered?</p>
+			<input class="qr-form-input " type="text" name="deliveryCity" placeholder="City"/>
+
+			<input class="qr-form-input " type="text" name="deliveryState" placeholder="State"/>
+
+			<p class="qr-form-input-label">Notes / Special Instructions</p>
+			<textarea name="quoteRequestNotes" rows="4" columns="50" class="qr-form-input">
+			</textarea>
+
+			<div class="button-holder" style="width: 100%; text-align: center;">
+				<button class="quote-request-submit-btn">
+					SUBMIT QUOTE REQUEST
+				</button>
+			</div>
+
+		</form>
 
 	</div>
 

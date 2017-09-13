@@ -1,0 +1,71 @@
+.quote-request-master-wrapper {
+	text-align: center;
+	padding-top: 120px;
+}
+
+.quote-request-header {
+	font-size: 40px;
+	font-weight: 800;
+	line-height: 44px;
+	padding-bottom: 20px;
+}
+
+.quote-request-sub-header {
+	color: #292929;
+	font-size: 14px;
+}
+
+
+
+
+/* 
+	FORM STYLING
+*/
+
+#quote-request-form {
+	padding-top: 35px;
+	padding-bottom: 25px;
+	text-align: left;
+	width: 600px;
+	margin: 0 auto;
+}
+
+.qr-form-input {
+	width: 100%;
+}
+
+.qr-form-section-header {
+	padding-bottom: 0;
+	margin-bottom: 6px;
+	padding-top: 15px;
+}
+
+.qr-form-input-label {
+	padding-top: 10px;
+	padding-bottom: 0;
+	margin-bottom: 2px;
+}
+
+.quote-request-submit-btn {
+	width: 400px;
+	height: 30px;
+	margin: 0 auto;
+	margin-top: 40px;
+	text-align: center;
+	font-size: 20px;
+	line-height: 30px;
+	padding: 0;
+	font-weight: 600;
+	background-color: #080808;
+	color: #e5e5e5;
+}
+
+.quote-request-submit-btn:hover {
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
+
+/*
+	END FORM STYLING
+*/
