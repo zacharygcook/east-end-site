@@ -158,16 +158,25 @@
 
             $mail = new PHPMailer;
 
-            //Server settings
+            // GMAIL SMTP Server settings
+            // $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+            // $mail->isSMTP();                                      // Set mailer to use SMTP
+            // $mail->Host = 'smtp.gmail.com';                    // Specify main and backup SMTP servers
+            // $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            // $mail->Username = 'zach@zachcookhustles.com';                 // SMTP username
+            // $mail->Password = '2017theyeariwin';                           // SMTP password
+            // $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            // $mail->Port = 465;                                    // TCP port to connect to
+
             $mail->SMTPDebug = 0;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.gmail.com';                    // Specify main and backup SMTP servers
+            $mail->Host = 'mail.smtp2go.com';                    // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
             $mail->Username = 'zach@zachcookhustles.com';                 // SMTP username
-            $mail->Password = '2017theyeariwin';                           // SMTP password
+            $mail->Password = 'GPdTLeziBEuu';                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 465;                                    // TCP port to connect to
-            
+            $mail->Port = 2525;                                    // TCP port to connect to
+
             //Recipients
             $mail->setFrom("$email", "$name");
             $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
