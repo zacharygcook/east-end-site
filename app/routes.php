@@ -6,22 +6,8 @@
     use Psr\Http\Message\ServerRequestInterface as Request;
     use Psr\Http\Message\ResponseInterface as Response;
 
+    // Adding PHPMailer from 'the global namespace' or something
     use PHPMailer\PHPMailer\PHPMailer;
-
-    // HOME ROUTE
-    // Alternate way we can start doing routes if we want
-    // $app->get('/', function (Request $request, Response $response, $args)   {
-
-    //     $vars = [
-    //         'page' => [
-    //         'title' => 'Welcome - East End Ink',
-    //         'description' => 'Welcome to the official page of Alpha Inc.'
-    //         ],
-    //     ];
-    //     return $this->view->render($response, 'home.twig', $vars);
-
-    // })->setName('home');
-
 
     // Docs link to 'groups' doc info - https://www.slimframework.com/docs/objects/router.html#route-groups
     $app->group('/', function () {
@@ -50,6 +36,8 @@
         });
 
         $this->get('products', function (Request $request, Response $response, $args) {
+
+            // error_log("Check it out", 3, "/var/www/html/error_logs/EEI_errors.log");
 
             $vars = [
                 'page' => [
@@ -94,6 +82,7 @@
         });
 
         $this->get('email-test', function (Request $request, Response $response, $args) {
+
             $vars = [
                 'page' => [
                 'title' => 'East End Ink',
@@ -105,21 +94,19 @@
 
 
             //Server settings
-            // $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-            // $mail->isSMTP();                                      // Set mailer to use SMTP
-            // $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
-            // $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            // $mail->Username = 'user@example.com';                 // SMTP username
-            // $mail->Password = 'secret';                           // SMTP password
-            // $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            // $mail->Port = 587;                                    // TCP port to connect to
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.sendgrid.net';                    // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'apikey';                 // SMTP username
+            $mail->Password = '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';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 25;                                    // TCP port to connect to
 
             //Recipients
             $mail->setFrom('from@example.com', 'Mailer');
             $mail->addAddress('zach@zachcookhustles.com', 'Joe User');     // Add a recipient
             $mail->addReplyTo('info@example.com', 'Information');
-            $mail->addCC('cc@example.com');
-            $mail->addBCC('bcc@example.com');
 
             //Attachments
             // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
@@ -128,7 +115,7 @@
             // Try to make it faster by not sending via SMTP???
             // Got from this StackOverflow answer:
             // https://stackoverflow.com/questions/27552252/sending-phpmailer-smtp-email-with-gmail-takes-long-time-1-5-seconds
-            $mail->IsMail();
+            // $mail->IsMail();
 
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
@@ -153,29 +140,33 @@
                 ],
             ];
 
+            // error_log("Hit home-contact-email \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+
             $name = $_POST['name'];
             $email = $_POST['email'];
             $subject = $_POST['subject'];
             $message = $_POST['message'];
 
+            // error_log("Vars: " . $name . $email . $subject . $message . "...DONE \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+
             $mail = new PHPMailer;
 
             //Server settings
-            // $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-            // $mail->isSMTP();                                      // Set mailer to use SMTP
-            // $mail->Host = 'smtp1.example.com;smtp2.example.com';  // Specify main and backup SMTP servers
-            // $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            // $mail->Username = 'user@example.com';                 // SMTP username
-            // $mail->Password = 'secret';                           // SMTP password
-            // $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            // $mail->Port = 587;                                    // TCP port to connect to
+            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'smtp.sendgrid.net';                    // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'apikey';                           // SMTP username
+            $mail->Password = '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';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 25;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom('from@example.com', 'Mailer');
-            $mail->addAddress('zach@zachcookhustles.com', 'Joe User');     // Add a recipient
-            $mail->addReplyTo('info@example.com', 'Information');
-            $mail->addCC('cc@example.com');
-            $mail->addBCC('bcc@example.com');
+            $mail->setFrom("$email", "$name");
+            $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
+            $mail->addReplyTo("$email", "$name");
+            // $mail->addCC('cc@example.com');
+            // $mail->addBCC('bcc@example.com');
 
             //Attachments
             // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
@@ -188,9 +179,8 @@
             
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Here is the subject';
-            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->Subject = "$subject";
+            $mail->Body    = '<b>What the customer wants to say: </b> ' . "$message";
 
             if($mail->send()) {
               echo "Message sent!";

@@ -236,23 +236,23 @@
 						WE WOULD LOVE TO HEAR FROM YOU. PLEASE DROP US A LINE BELOW IF YOU HAVE ANY QUESTIONS OR CONCERNS.
 					</h6>
 
-					<form class="fancy-contact-us-form">
+					<form class="fancy-contact-us-form" action="http://localhost:8080/home-contact-email" method="POST" enctype="multipart/form-data">
 						<p class="fancy-form-field-header">NAME</p>
-						<input type="text" class="fancy-contact-form-text-input"/>
+						<input name="name" type="text" class="fancy-contact-form-text-input"/>
 
 						<p class="fancy-form-field-header">EMAIL</p>
-						<input type="text" class="fancy-contact-form-text-input"/>
+						<input name="email" type="text" class="fancy-contact-form-text-input"/>
 
 						<p class="fancy-form-field-header">SUBJECT</p>
-						<input type="text" class="fancy-contact-form-text-input"/>
+						<input name="subject" type="text" class="fancy-contact-form-text-input"/>
 
 						<p class="fancy-form-field-header">MESSAGE</p>
-						<textarea rows="4" columns="50" class="fancy-contact-form-message">
+						<textarea name="message" rows="4" columns="50" class="fancy-contact-form-message">
 						</textarea>
 
-						<div class="fancy-contact-us-form-submit-btn">
+						<button type="submit" class="fancy-contact-us-form-submit-btn">
 							SUBMIT
-						</div>
+						</button>
 					</form>
 				</div>
 			</div>
