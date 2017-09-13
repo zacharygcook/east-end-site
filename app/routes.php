@@ -159,15 +159,15 @@
             $mail = new PHPMailer;
 
             //Server settings
-            $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+            $mail->SMTPDebug = 0;                                 // Enable verbose debug output
             $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.sendgrid.net';                    // Specify main and backup SMTP servers
+            $mail->Host = 'smtp.gmail.com';                    // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'apikey';                           // SMTP username
-            $mail->Password = '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';                           // SMTP password
+            $mail->Username = 'zach@zachcookhustles.com';                 // SMTP username
+            $mail->Password = '2017theyeariwin';                           // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 25;                                    // TCP port to connect to
-
+            $mail->Port = 465;                                    // TCP port to connect to
+            
             //Recipients
             $mail->setFrom("$email", "$name");
             $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
