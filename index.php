@@ -9,6 +9,9 @@
 // Require composer autoloader
 require __DIR__ . '/vendor/autoload.php';
 
+// Load ENV variables
+// HOW TO: https://scotch.io/tutorials/how-to-use-environment-variables
+
 
 // Application settings
 $settings = require __DIR__ . '/app/settings.php';
