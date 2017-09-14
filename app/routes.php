@@ -207,4 +207,50 @@
             return $this->view->render($response, 'quote-request.twig', $vars);          
         });
 
+        $this->post('quote-request-submit', function (Request $request, Response $response, $args) {
+            $vars = [
+                'page' => [
+                'title' => 'East End Ink',
+                'description' => 'Best apparel company in Austin'
+                ],
+            ];
+
+            // error_log("Hit home-contact-email \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+
+            // Contact Info
+            $name = $_POST['fullName'];
+            $organization = $_POST['orgName'];
+            $email = $_POST['emailAddress'];
+            $phone = $_POST['phoneNumber'];
+            // echo "Name: $name, Organization Name: $organization, Email Address: $email, Phone Number: $phone \n";
+
+
+            // About Your Gear
+            $apparelType = $_POST['apparelType'];
+            $desiredQuantity = $_POST['desiredQuantity'];
+            $colorOfItems = $_POST['colorOfItems'];
+
+            // If yes, know about they're design
+            $decorationLocationOne = $_POST['decorationLocationOne'];
+            $numberColorsLocationOne = $_POST['numberColorsLocationOne'];
+            // TODO: put in file upload for 'designLocationOne'
+            $decorationLocationTwo = $_POST['decorationLocationTwo'];
+            $numberColorsLocationTwo = $_POST['numberColorsLocationTwo'];
+            // TODO: put in file upload for 'designLocationTwo'
+
+            // If no, don't know what design they want
+            $designIdeaNotes = $_POST['designIdeaNotes'];
+            // TODO: put in file upload for 'designIdeaFileOne'
+            // TODO: put in file upload for 'designIdeaFileTwo'
+            // echo "Apparel Type: $apparelType, Desired Quantity: $desiredQuantity, Color Of Items: $colorOfItems, Design Idea Notes: $designIdeaNotes \n";
+            // echo "Decoration Loc One: $decorationLocationOne, # Colors Loc 1: $numberColorsLocationOne, Decoration Loc 2: $decorationLocationTwo, # Colors Loc 2: $numberColorsLocationTwo \n";
+
+
+            // Delivery / Budget Info
+
+
+
+            return $this->view->render($response, 'quote-request.twig', $vars);          
+        });
+
     });

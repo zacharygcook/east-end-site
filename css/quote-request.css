@@ -28,20 +28,29 @@
 	text-align: left;
 	width: 600px;
 	margin: 0 auto;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .qr-form-input {
 	width: 100%;
+	border: none;
+	background-color: #dcd8d6;
+}
+
+.qr-textarea {
+	padding-left: 8px;
 }
 
 .qr-form-text-input {
-	border: none;
-	background-color: #dcd8d6;
 	width: 100%;
 	height: 36px;
 	font-size: 20px;
 	line-height: 36px;
 	padding-left: 8px;
+}
+
+.qr-form-text-input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 30px #dcd8d6 inset;
 }
 
 .qr-form-section-header {
@@ -54,6 +63,41 @@
 	padding-top: 10px;
 	padding-bottom: 0;
 	margin-bottom: 2px;
+	font-size: 18px;
+}
+
+.qr-form-select {
+	height: 36px;
+	line-height: 36px;
+}
+
+.two-options-wrapper {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 8px;
+	text-align: center;
+}
+
+.qr-form-option-btn {
+	display: inline-block;
+	margin-right: 5px;
+	margin-left: 5px;
+	width: 200px;
+	height: 30px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 16px;
+	line-height: 30px;
+	padding: 0;
+	font-weight: 600;
+	background-color: #080808;
+	color: #dbdbdb;
+}
+
+.qr-form-option-btn:hover {
+	background-color: black;
+	color: white;
+	cursor: pointer;
 }
 
 .quote-request-submit-btn {
@@ -75,6 +119,49 @@
 	color: white;
 	cursor: pointer;
 }
+
+.hidden-actual-file-uploader {
+	width: 1px;
+	visibility: hidden;
+}
+
+.upload-file-button {
+	width: 150px;
+	height: 30px;
+	margin-top: 5px;
+	text-align: center;
+	font-size: 20px;
+	line-height: 30px;
+	padding: 0;
+	background-color: #080808;
+	color: #e5e5e5;	
+}
+
+.upload-file-button:hover {
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
+
+#uploadBlockOne {
+	position: relative;
+	height: 44px;
+}
+
+#uploadBlockTwo {
+	position: relative;
+	height: 44px;
+}
+
+.uploaded-checkmark {
+	position: absolute;
+	bottom: 4px;
+	display: inline-block;
+	color: #02a03c;
+	line-height: 36px;
+	padding-left: 15px;
+}
+
 
 /*
 	END FORM STYLING

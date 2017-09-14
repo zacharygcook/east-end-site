@@ -18,22 +18,22 @@
 			<h3 class="qr-form-section-header">Contact Info</h3>
 
 			<p class="qr-form-input-label">First and Last Name</p>
-			<input class="qr-form input qr-form-text-input" type="text" name="firstName" />
+			<input class="qr-form-input qr-form-text-input" type="text" name="fullName" />
 
 			<p class="qr-form-input-label">Organization Name</p>
-			<input class="qr-form input qr-form-text-input" type="text" name="orgName" />
+			<input class="qr-form-input qr-form-text-input" type="text" name="orgName" />
 
 			<p class="qr-form-input-label">Email Address</p>
-			<input class="qr-form input qr-form-text-input" type="email" name="emailAddress" />
+			<input class="qr-form-input qr-form-text-input" type="email" name="emailAddress" />
 
 			<p class="qr-form-input-label">Phone Number</p>
-			<input class="qr-form input qr-form-text-input" type="telephone" name="phoneNumber" />
+			<input class="qr-form-input qr-form-text-input" type="telephone" name="phoneNumber" />
 
 			<h3 class="qr-form-section-header" style="padding-top: 30px;">About Your Gear</h3>
 
 			<!-- Big drop-down with product category -->
 			<p class="qr-form-input-label">Items to be Printed or Embroidered</p>
-			<select class="qr-form-input " name="apparelType"  >
+			<select class="qr-form-input qr-form-select" name="apparelType"  >
 				<option selected="selected"></option>
 				<option value="short-sleeve-shirts">Short Sleeve Shirts</option>
 				<option value="long-sleeve-shirts">Long Sleeve Shirts</option>
@@ -51,82 +51,141 @@
 
 			<p style="font-size: 1.2em;" class="qr-form-input-label">Already Know What Design You Want on Your Items?</p>
 
-			<button class="qr-form-option-btn">Yes</button>
-			<button class="qr-form-option-btn">No</button>
-
-			<div class="know-what-they-want-on-design">
-				<p class="qr-form-input-label">Decoration Location #1</p>
-				<select class="qr-form-input " name="decorationLocationOne" >
-					<option selected="selected"></option>
-					<option value="full-front">Full Front</option>
-					<option value="full-back">Full Back</option>
-					<option value="left-chest">Left Chest</option>
-					<option value="top-back">Top Back</option>
-					<option value="left-sleeve">Left Sleeve</option>
-					<option value="right-sleeve">Right Sleeve</option>
-					<option value="other">Other</option>
-				</select>
-
-				<p class="qr-form-input-label">Number of Colors for Location #1</p>
-				<input class="qr-form input qr-form-text-input" type="text" name="orgName" />
-
-
-				<p class="qr-form-input-label">Design / Art File for Location #1</p>
-				<input class="qr-form input qr-form-text-input" type="text" name="orgName" />
-
-
-				<p class="qr-form-input-label">Decoration Location #2</p>
-				<select class="qr-form-input " name="decorationLocationTwo" >
-					<option selected="selected"></option>
-					<option value="full-front">Full Front</option>
-					<option value="full-back">Full Back</option>
-					<option value="left-chest">Left Chest</option>
-					<option value="top-back">Top Back</option>
-					<option value="left-sleeve">Left Sleeve</option>
-					<option value="right-sleeve">Right Sleeve</option>
-					<option value="other">Other</option>
-				</select>
-
-
-				<p class="qr-form-input-label">Number of Colors for Location #2</p>
-				<input class="qr-form input qr-form-text-input" type="text" name="orgName" />
-
-
-				<p class="qr-form-input-label">Design / Art File for Location #2</p>
-				<input class="qr-form input qr-form-text-input" type="text" name="orgName" />
-
-
-
+			<div class="two-options-wrapper">
+				<div id="sureOfDesignButton" class="qr-form-option-btn">YES</div>
+				<div id="notSureDesignButton" class="qr-form-option-btn">NOT SURE</div>
 			</div>
 
-			<div class="know-what-they-want-on-design">
+				<div id="know-what-they-want-on-design">
+					<p class="qr-form-input-label">Decoration Location #1</p>
+					<select class="qr-form-input qr-form-select" name="decorationLocationOne" >
+						<option selected="selected"></option>
+						<option value="full-front">Full Front</option>
+						<option value="full-back">Full Back</option>
+						<option value="left-chest">Left Chest</option>
+						<option value="top-back">Top Back</option>
+						<option value="left-sleeve">Left Sleeve</option>
+						<option value="right-sleeve">Right Sleeve</option>
+						<option value="other">Other</option>
+					</select>
+
+					<p class="qr-form-input-label">Number of Colors for Location #1</p>
+					<input class="qr-form-input qr-form-text-input" type="number" name="numberColorsLocationOne" />
+
+					<p class="qr-form-input-label">Design / Art File for Location #1</p>
+					<div id="uploadBlockOne">
+						<input type="file" class="hidden-actual-file-uploader" id="designLocationOneUpload" name="designLocationOne" />
+						<input type="button" class="upload-file-button" id="designLocationOneFileClickerButton" value="Upload Art" />
+						<i id="uploadBlockOneSuccess" class="uploaded-checkmark fa fa-check-square-o fa-2x"></i>
+					</div>
 
 
+					<p class="qr-form-input-label">Decoration Location #2</p>
+					<select class="qr-form-input qr-form-select" name="decorationLocationTwo" >
+						<option selected="selected"></option>
+						<option value="full-front">Full Front</option>
+						<option value="full-back">Full Back</option>
+						<option value="left-chest">Left Chest</option>
+						<option value="top-back">Top Back</option>
+						<option value="left-sleeve">Left Sleeve</option>
+						<option value="right-sleeve">Right Sleeve</option>
+						<option value="other">Other</option>
+					</select>
 
+					<p class="qr-form-input-label">Number of Colors for Location #2</p>
+					<input class="qr-form-input qr-form-text-input" type="number" name="numberColorsLocationTwo" />
 
-			</div>
+					<p class="qr-form-input-label">Design / Art File for Location #2</p>
+
+					<div id="uploadBlockTwo">
+						<input type="file" class="hidden-actual-file-uploader" id="designLocationTwoUpload" name="designLocationTwo" />
+						<input type="button" class="upload-file-button" id="designLocationTwoFileClickerButton" value="Upload Art" />
+						<i id="uploadBlockTwoSuccess" class="uploaded-checkmark fa fa-check-square-o fa-2x"></i>
+					</div>
+
+				</div>
+
+				<div id="dont-know-what-they-want-on-design">
+					<p class="qr-form-input-label">What Kind of Design Where You Thinking?</p>
+					<textarea name="designIdeaNotes" rows="4" columns="50"
+						placeholder="Please tell us what ideas you have for the design.." class="qr-form-input qr-textarea"></textarea>
+
+					<p class="qr-form-input-label">Upload Any Images You Want to Use for Inspiration or Take Ideas From</p>
+					
+					<div id="uploadBlockThree" style="width: 49%; position: relative; height: 44px; display: inline-block;">
+						<input type="file" class="hidden-actual-file-uploader" id="designIdeaOneUpload" name="designIdeaFileOne">
+						<input type="button" class="upload-file-button" id="designIdeaOneFileClickerButton" value="Upload Idea" />
+						<i id="uploadBlockThreeSuccess" class="uploaded-checkmark fa fa-check-square-o fa-2x"></i>
+					</div>
+
+					<div id="uploadBlockFour" style="width: 49%; position: relative; height: 44px; display: inline-block;">
+						<input type="file" class="hidden-actual-file-uploader" id="designIdeaTwoUpload" name="designIdeaFileTwo">
+						<input type="button" class="upload-file-button" id="designIdeaTwoFileClickerButton" value="Upload Idea" />
+						<i id="uploadBlockFourSuccess" class="uploaded-checkmark fa fa-check-square-o fa-2x"></i>
+					</div>
+				</div>
 
 			<h3 class="qr-form-section-header" style="padding-top: 30px;">Delivery / Budget Info</h3>
 
 			<p class="qr-form-input-label">When do you need these by?</p>
-			<input class="qr-form input qr-form-text-input" type="date" name="deliveryDate" />
 
-			<p class="qr-form-input-label">Where would the order be getting delivered?</p>
-			<input class="qr-form input qr-form-text-input" type="text" name="deliveryCity" placeholder="City"/>
+			<input class="qr-form-input qr-form-text-input" style="width: 280px;" type="text" name="deliveryMonth" placeholder="December" />
+			
+			<input class="qr-form-input qr-form-text-input" style="width: 50px;" type="text" name="deliveryDay" placeholder="20" />
 
-			<input class="qr-form input qr-form-text-input" type="text" name="deliveryState" placeholder="State"/>
+			<select class="qr-form-input qr-form-select" style="width: 80px;" name="deliveryYear"  >
+				<option selected="selected" value="2017">2017</option>
+				<option value="2018">2018</option>
+			</select>
+
+			<p class="qr-form-input-label">Price Range</p>
+			<select class="qr-form-input qr-form-select" name="priceRange"  >
+				<option selected="selected" value="economical">$ - Economical2017</option>
+				<option value="mid-range">$$ - Mid-Range</option>
+				<option value="mid-range">$$$ - High End</option>
+			</select>
+
+			<p class="qr-form-input-label">Want to Pick Your Order Up or Get it Shipped?</p>
+
+			<div class="two-options-wrapper">
+				<div id="picking-up-btn" class="qr-form-option-btn">Pickup in Austin</div>
+				<div id="getting-shipped-btn" class="qr-form-option-btn">Get it Shipped</div>
+			</div>
+
+				<div id="picking-order-up" style="text-align: center;">
+
+					<p class="qr-form-input-label" style="padding-bottom: 0; margin-bottom: 3px">4020 S Industrial Drive Suite #150</p>
+					<p class="qr-form-input-label" style="padding-top: 0; padding-bottom: 8px;">Austin, TX 78744</p>
+
+					<img src="./img/HQ-location-google-maps-rectangle-slice.png" style="width: 100%; height: auto; margin: 0 auto;" />
+				</div>
+
+				<div id="getting-order-shipped">
+					<p class="qr-form-input-label">Shipping Address:</p>
+
+					<input class="qr-form-input qr-form-text-input" style="margin-bottom: 3px;" type="text" name="deliveryAddress" placeholder="Address"/>
+
+					<input class="qr-form-input qr-form-text-input" style="width: 39%; display: inline-block;" type="text" name="deliveryCity" placeholder="City"/>
+
+					<input class="qr-form-input qr-form-text-input" style="width: 39%; display: inline-block;" type="text" name="deliveryState" placeholder="State"/>
+
+					<input class="qr-form-input qr-form-text-input" style="width: 20%; display: inline-block;" type="text" name="deliveryZip" placeholder="Zip Code" />
+
+				</div>
 
 			<p class="qr-form-input-label">Notes / Special Instructions</p>
-			<textarea name="quoteRequestNotes" rows="4" columns="50" class="qr-form-input">
-			</textarea>
+			<textarea name="quoteRequestNotes" placeholder="Anything else you want us to know about your order?" rows="6" columns="50" class="qr-form-input qr-textarea"></textarea>
 
 			<div class="button-holder" style="width: 100%; text-align: center;">
-				<button class="quote-request-submit-btn">
+				<button type="submit" class="quote-request-submit-btn">
 					SUBMIT QUOTE REQUEST
 				</button>
 			</div>
 
 		</form>
+
+		<script src="./js/file-upload-clickers.js"></script>
+		<script src="./js/quote-form-section-toggler.js"></script>
 
 	</div>
 
