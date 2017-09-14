@@ -222,7 +222,7 @@
             $organization = $_POST['orgName'];
             $email = $_POST['emailAddress'];
             $phone = $_POST['phoneNumber'];
-            // echo "Name: $name, Organization Name: $organization, Email Address: $email, Phone Number: $phone \n";
+            echo "<p>Name: $name, Organization Name: $organization, Email Address: $email, Phone Number: $phone </p> \n";
 
 
             // About Your Gear
@@ -242,8 +242,9 @@
             $designIdeaNotes = $_POST['designIdeaNotes'];
             // TODO: put in file upload for 'designIdeaFileOne'
             // TODO: put in file upload for 'designIdeaFileTwo'
-            // echo "Apparel Type: $apparelType, Desired Quantity: $desiredQuantity, Color Of Items: $colorOfItems, Design Idea Notes: $designIdeaNotes \n";
-            // echo "Decoration Loc One: $decorationLocationOne, # Colors Loc 1: $numberColorsLocationOne, Decoration Loc 2: $decorationLocationTwo, # Colors Loc 2: $numberColorsLocationTwo \n";
+            echo "<p>Apparel Type: $apparelType, Desired Quantity: $desiredQuantity, Color Of Items: $colorOfItems, Design Idea Notes: $designIdeaNotes </p>\n";
+            echo "<p>Decoration Loc One: $decorationLocationOne, # Colors Loc 1: $numberColorsLocationOne, Decoration Loc 2: $decorationLocationTwo, " . 
+            "# Colors Loc 2: $numberColorsLocationTwo </p> \n";
 
 
             // Delivery / Budget Info
