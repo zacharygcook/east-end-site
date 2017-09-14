@@ -222,13 +222,15 @@
             $organization = $_POST['orgName'];
             $email = $_POST['emailAddress'];
             $phone = $_POST['phoneNumber'];
-            echo "<p>Name: $name, Organization Name: $organization, Email Address: $email, Phone Number: $phone </p> \n";
+            // echo "<p>Name: $name, Organization Name: $organization, Email Address: $email, Phone Number: $phone </p> \n";
 
 
             // About Your Gear
             $apparelType = $_POST['apparelType'];
             $desiredQuantity = $_POST['desiredQuantity'];
             $colorOfItems = $_POST['colorOfItems'];
+
+            // TODO: Add something to collect whether they know what design they want or not
 
             // If yes, know about they're design
             $decorationLocationOne = $_POST['decorationLocationOne'];
@@ -242,14 +244,32 @@
             $designIdeaNotes = $_POST['designIdeaNotes'];
             // TODO: put in file upload for 'designIdeaFileOne'
             // TODO: put in file upload for 'designIdeaFileTwo'
-            echo "<p>Apparel Type: $apparelType, Desired Quantity: $desiredQuantity, Color Of Items: $colorOfItems, Design Idea Notes: $designIdeaNotes </p>\n";
-            echo "<p>Decoration Loc One: $decorationLocationOne, # Colors Loc 1: $numberColorsLocationOne, Decoration Loc 2: $decorationLocationTwo, " . 
-            "# Colors Loc 2: $numberColorsLocationTwo </p> \n";
+            // echo "<p>Apparel Type: $apparelType, Desired Quantity: $desiredQuantity, Color Of Items: $colorOfItems, Design Idea Notes: $designIdeaNotes </p>\n";
+            // echo "<p>Decoration Loc One: $decorationLocationOne, # Colors Loc 1: $numberColorsLocationOne, Decoration Loc 2: $decorationLocationTwo, " . 
+            // "# Colors Loc 2: $numberColorsLocationTwo </p> \n";
 
 
             // Delivery / Budget Info
+            $deliveryMonth = $_POST['deliveryMonth'];
+            $deliveryDay = $_POST['deliveryDay'];
+            $deliveryYear = $_POST['deliveryYear'];
 
+            $priceRange = $_POST['priceRange'];
 
+            // TODO: Add something to collect pickup or delivery
+
+            $deliveryAddress = $_POST['deliveryAddress'];
+            $deliveryCity = $_POST['deliveryCity'];
+            $deliveryState = $_POST['deliveryState'];
+            $deliveryZip = $_POST['deliveryZip'];
+
+            $quoteRequestNotes = $_POST['quoteRequestNotes'];
+
+            // echo "<p>Delivery Date: $deliveryMonth $deliveryDay, $deliveryYear, Price Range: $priceRange</p>\n" .
+            //    "<p>Delivery Address: $deliveryAddress $deliveryCity, $deliveryState $deliveryZip </p>\n" .
+            //    "<p>Quote Request General Notes: $quoteRequestNotes </p>\n";
+
+            // Got all the variables collected!!!
 
             return $this->view->render($response, 'quote-request.twig', $vars);          
         });
