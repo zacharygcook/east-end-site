@@ -7,6 +7,8 @@
     // Adding PHPMailer from 'the global namespace' or something
     use PHPMailer\PHPMailer\PHPMailer;
 
+    $emailBodyTemplate = file_get_contents('./resource/views/quote-request-email.html');
+
     // Docs link to 'groups' doc info - https://www.slimframework.com/docs/objects/router.html#route-groups
     $app->group('/', function () {
 
@@ -208,22 +210,12 @@
         });
 
         $this->post('quote-request-submit', function (Request $request, Response $response, $args) {
-            $vars = [
-                'page' => [
-                'title' => 'East End Ink',
-                'description' => 'Best apparel company in Austin'
-                ],
-            ];
-
-            // error_log("Hit home-contact-email \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-
+            
             // Contact Info
             $name = $_POST['fullName'];
             $organization = $_POST['orgName'];
             $email = $_POST['emailAddress'];
             $phone = $_POST['phoneNumber'];
-            // echo "<p>Name: $name, Organization Name: $organization, Email Address: $email, Phone Number: $phone </p> \n";
-
 
             // About Your Gear
             $apparelType = $_POST['apparelType'];
@@ -244,10 +236,6 @@
             $designIdeaNotes = $_POST['designIdeaNotes'];
             // TODO: put in file upload for 'designIdeaFileOne'
             // TODO: put in file upload for 'designIdeaFileTwo'
-            // echo "<p>Apparel Type: $apparelType, Desired Quantity: $desiredQuantity, Color Of Items: $colorOfItems, Design Idea Notes: $designIdeaNotes </p>\n";
-            // echo "<p>Decoration Loc One: $decorationLocationOne, # Colors Loc 1: $numberColorsLocationOne, Decoration Loc 2: $decorationLocationTwo, " . 
-            // "# Colors Loc 2: $numberColorsLocationTwo </p> \n";
-
 
             // Delivery / Budget Info
             $deliveryMonth = $_POST['deliveryMonth'];
@@ -265,13 +253,115 @@
 
             $quoteRequestNotes = $_POST['quoteRequestNotes'];
 
-            // echo "<p>Delivery Date: $deliveryMonth $deliveryDay, $deliveryYear, Price Range: $priceRange</p>\n" .
-            //    "<p>Delivery Address: $deliveryAddress $deliveryCity, $deliveryState $deliveryZip </p>\n" .
-            //    "<p>Quote Request General Notes: $quoteRequestNotes </p>\n";
+            if (isset($_POST['submit'])) {
+                $name = mysql_real_escape_string($name);
+                $organization = mysql_real_escape_string($organization);
+                $email = mysql_real_escape_string($email);
+                $phone = mysql_real_escape_string($phone);
+                $apparelType = mysql_real_escape_string($apparelType);
+                $desiredQuantity = mysql_real_escape_string($desiredQuantity);
+                $colorOfItems = mysql_real_escape_string($colorOfItems);
+                $decorationLocationOne = mysql_real_escape_string($decorationLocationOne);
+                $numberColorsLocationOne = mysql_real_escape_string($numberColorsLocationOne);
+                $decorationLocationTwo = mysql_real_escape_string($decorationLocationTwo);
+                $numberColorsLocationTwo = mysql_real_escape_string($numberColorsLocationTwo);
+                $designIdeaNotes = mysql_real_escape_string($designIdeaNotes);
+                $deliveryMonth = mysql_real_escape_string($deliveryMonth);
+                $deliveryDay = mysql_real_escape_string($deliveryDay);
+                $deliveryYear = mysql_real_escape_string($deliveryYear);
+                $priceRange = mysql_real_escape_string($priceRange);
+                $deliveryAddress  = mysql_real_escape_string($deliveryAddress );
+                $deliveryCity = mysql_real_escape_string($deliveryCity);
+                $deliveryState = mysql_real_escape_string($deliveryState);
+                $deliveryZip = mysql_real_escape_string($deliveryZip);
+                $quoteRequestNotes = mysql_real_escape_string($quoteRequestNotes);
+            }
 
-            // Got all the variables collected!!!
+            if ($designIdeaNotes !== '') {
+                $knowDesign = "no";
+            } else {
+                $knowDesign = "yes";
+            }
 
-            return $this->view->render($response, 'quote-request.twig', $vars);          
+            if ($deliveryAddress !== '') {
+                $deliveryMethod = 'shipping';
+            } else {
+                $deliveryMethod = 'Office Pickup';
+            }
+
+            $vars = [
+                'name' => $name,
+                'orgName' => $organization,
+                'email' => $email,
+                'phone' => $phone,
+                'apparelType' => $apparelType,
+                'desiredQuantity' => $desiredQuantity,
+                'colorOfItems' => $colorOfItems,
+                'decorationLocationOne' => $decorationLocationOne,
+                'numberColorsLocationOne' => $numberColorsLocationOne,
+                'decorationLocationTwo' => $decorationLocationTwo,
+                'numberColorsLocationTwo' => $numberColorsLocationTwo,
+                'designIdeaNotes' => $designIdeaNotes,
+                'deliveryMonth' => $deliveryMonth,
+                'deliveryDay' => $deliveryDay,
+                'deliveryYear' => $deliveryYear,
+                'priceRange' => $priceRange,
+                'deliveryAddress'  >= $deliveryAddress ,
+                'deliveryCity' => $deliveryCity,
+                'deliveryState' => $deliveryState,
+                'deliveryZip' => $deliveryZip,
+                'quoteRequestNotes' => $quoteRequestNotes,
+
+                'knowDesign' => $knowDesign,
+                'deliveryMethod' => $deliveryMethod,
+
+            ];
+
+            // DO EMAIL STUFF
+            $quoteRequestTemplate = $this->view->fetch('email/quote-request-email.twig', $vars);
+
+            $mail = new PHPMailer;
+
+            $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'mail.smtp2go.com';                    // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'zach@zachcookhustles.com';                 // SMTP username
+            $mail->Password = 'GPdTLeziBEuu';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 2525;                                    // TCP port to connect to
+
+            //Recipients
+            $mail->setFrom("$email", "$name");
+            $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
+            $mail->addReplyTo("$email", "$name");
+
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = "Quote Request from - $name";
+            $mail->Body    = "$quoteRequestTemplate";
+
+            $date = new DateTime();
+
+            if($mail->send()) {
+                $timestamp = $date->format('U = Y-m-dH:i:s');
+                error_log("Email sent successfully at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
+            } else {
+                error_log("Email failed at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
+                error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+                echo "Mailer Error: " . $mail->ErrorInfo;
+            }
+
+            // PROOF loading the template above works: error_log("Quote request template \n $quoteRequestTemplate", 3, "/var/www/html/error_logs/EEI_errors.log");
+
+            // USEFUL LINKS FOR EMAIL TEMPLATING
+            // https://stackoverflow.com/questions/40695157/slim-framework-and-email-template-rendering-issue-with-phpmailer
+            // http://www.xeweb.net/2009/12/31/sending-emails-the-right-way-using-phpmailer-and-email-templates/
+            // https://stackoverflow.com/questions/38158181/send-html-emails-using-phpmailer-and-html-templates
+            // http://www.phpdevtips.com/2014/07/using-phpmailer-spectacular-php-emails/
+
+
+            return $this->view->render($response, 'email/quote-request-email.twig', $vars);          
         });
 
     });

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Quote request email">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Quote Request</title>
+
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+
+            .table {
+              width: 100%;
+              max-width: 100%;
+              margin-bottom: 1rem;
+              background-color: transparent;
+            }
+
+            .table th,
+            .table td {
+              padding: 0.75rem;
+              vertical-align: top;
+              border-top: 1px solid #e9ecef;
+            }
+
+            .table thead th {
+              vertical-align: bottom;
+              border-bottom: 2px solid #e9ecef;
+            }
+
+            .table tbody + tbody {
+              border-top: 2px solid #e9ecef;
+            }
+
+            .table .table {
+              background-color: #fff;
+            }
+
+            .table-inverse {
+              color: #fff;
+              background-color: #212529;
+            }
+
+            .table-inverse th,
+            .table-inverse td,
+            .table-inverse thead th {
+              border-color: #32383e;
+            }
+
+            .table-inverse.table-bordered {
+              border: 0;
+            }
+
+            .table-inverse.table-striped tbody tr:nth-of-type(odd) {
+              background-color: rgba(255, 255, 255, 0.05);
+            }
+
+            .table-inverse.table-hover tbody tr:hover {
+              background-color: rgba(255, 255, 255, 0.075);
+            }
+        </style>
+
+        <!-- Bootstrap 4 CSS delivered via CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    </head>
+    <body>
+
+    {% include 'partials/email-nav.twig' %}
+
+    <div id="email-body" style="min-height: 100px; padding-top: 15px; padding-bottom: 15px;
+        padding-left: 25px; padding-right: 25px;">
+
+        <h3>Quote Request from - {{ name }} </h3>
+
+        <table class="table table-striped">
+            <thead style="background-color: black; color: white;" class="thead-inverse">
+                <tr>
+                    <th>Contact Info</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Full Name: </th>
+                    <th>{{ name }}</th>
+                </tr>
+                <tr>
+                    <th>Org Name: </th>
+                    <th>{{ orgName }}</th>
+                </tr>
+                <tr>
+                    <th>Email Address: </th>
+                    <th>zach@groupthrads.com</th>
+                </tr>
+                <tr>
+                    <th>Phone Number: </th>
+                    <th>{{ phone }}</th>
+                </tr>
+            </tbody>
+
+            <thead style="background-color: black; color: white;" class="thead-inverse">
+                <tr>
+                    <th>Gear Info</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Items to Print / Embroider: </th>
+                    <th>{{ apparelType }}</th>
+                </tr>
+                <tr>
+                    <th>Desired Quantity: </th>
+                    <th>{{ desiredQuantity }}<!-- Need if statement --></th>
+                </tr>
+                <tr>
+                    <th>Color of Items: </th>
+                    <th>{{ colorOfItems }} <!-- Need if statement --></th>
+                </tr>
+                <tr>
+                    <th>Know What Design They Want?</th>
+                    <th>{{ knowDesign }}</th>
+                </tr>
+
+                {% if knowDesign == 'yes' %}
+                <tr>
+                    <th>Decoration Location 1: </th>
+                    <th>{{ decorationLocationOne }}</th>
+                </tr>
+                <tr>
+                    <th>No. of Colors Location 1:</th>
+                    <th>{{ numberColorsLocationOne }} </th>
+                </tr>
+                <tr>
+                    <th>Decoration Location 2: </th>
+                    <th>{{ decorationLocationTwo }} <!-- Need if statement --></th>
+                </tr>
+                <tr>
+                    <th>No. of Colors Location 2:</th>
+                    <th>{{ numberColorsLocationTwo }} </th>
+                </tr>
+                {% endif %}
+
+            </tbody>
+            <thead style="background-color: black; color: white;" class="thead-inverse">
+                <tr>
+                    <th>Delivery / Budget Info</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Needed By: </th>
+                    <th>{{ deliveryMonth }} {{ deliveryDay }}, {{ deliveryYear }}</th>
+                </tr>
+                <tr>
+                    <th>Price Range: </th>
+                    <th>{{ priceRange }} </th>
+                </tr>
+                <tr>
+                    <th>Pickup or Shipping? </th>
+                    <th>{{ deliveryMethod }} </th>
+                </tr>
+
+                {% if deliveryMethod == 'shipping' %}
+                <tr>
+                    <th>Delivery Address:</th>
+                    <th>
+                        {{ deliveryAddress }} <br />
+                        {{ deliveryCity }}, {{ deliveryState }} {{ deliveryZip }}
+                    </th>
+                </tr>
+
+
+                {% endif %}
+
+            </tbody>
+        </table>
+
+        {% if knowDesign == 'no' %}
+        <div style="width: 100%; background-color: #dcd8d6; padding-left: 5px; padding-top: 5px; padding-bottom: 5px; min-height: 25px;">
+            <b>Design Ideas Message: </b> {{ designIdeaNotes }}
+        </div>
+        {% endif %}
+
+        {% if quoteRequestNotes != '' %}
+        <div style="width: 100%; background-color: #dcd8d6; padding-left: 5px; padding-top: 5px; padding-bottom: 5px; min-height: 25px;">
+            <b>Notes / Special Instructions from Customer: </b> {{ quoteRequestNotes }}
+        </div>
+        {% endif %}
+        
+    </div>
+
+    {% include 'partials/email-footer.twig' %}
+
+    </body>
+</html>
