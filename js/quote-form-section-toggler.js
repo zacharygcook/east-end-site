@@ -1,7 +1,7 @@
 jQuery(function($){
 		// Hide Sections on Page Load
-		$('#know-what-they-want-on-design').hide();
-		$('#dont-know-what-they-want-on-design').hide();
+		// $('#know-what-they-want-on-design').hide();
+		// $('#dont-know-what-they-want-on-design').hide();
 		$('#picking-order-up').hide();
 		$('#getting-order-shipped').hide();
 

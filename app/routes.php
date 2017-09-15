@@ -7,8 +7,6 @@
     // Adding PHPMailer from 'the global namespace' or something
     use PHPMailer\PHPMailer\PHPMailer;
 
-    $emailBodyTemplate = file_get_contents('./resource/views/quote-request-email.html');
-
     // Docs link to 'groups' doc info - https://www.slimframework.com/docs/objects/router.html#route-groups
     $app->group('/', function () {
 
@@ -210,47 +208,58 @@
         });
 
         $this->post('quote-request-submit', function (Request $request, Response $response, $args) {
-            
             // Contact Info
             $name = $_POST['fullName'];
             $organization = $_POST['orgName'];
             $email = $_POST['emailAddress'];
             $phone = $_POST['phoneNumber'];
-
             // About Your Gear
             $apparelType = $_POST['apparelType'];
             $desiredQuantity = $_POST['desiredQuantity'];
             $colorOfItems = $_POST['colorOfItems'];
-
             $knowDesign = $_POST['knowWhatDesignOrNot'];
-
-            // If yes, know about they're design
             $decorationLocationOne = $_POST['decorationLocationOne'];
             $numberColorsLocationOne = $_POST['numberColorsLocationOne'];
-            // TODO: put in file upload for 'designLocationOne'
+            // TODO: put in file upload for 
             $decorationLocationTwo = $_POST['decorationLocationTwo'];
             $numberColorsLocationTwo = $_POST['numberColorsLocationTwo'];
             // TODO: put in file upload for 'designLocationTwo'
-
-            // If no, don't know what design they want
             $designIdeaNotes = $_POST['designIdeaNotes'];
             // TODO: put in file upload for 'designIdeaFileOne'
             // TODO: put in file upload for 'designIdeaFileTwo'
-
             // Delivery / Budget Info
             $deliveryMonth = $_POST['deliveryMonth'];
             $deliveryDay = $_POST['deliveryDay'];
             $deliveryYear = $_POST['deliveryYear'];
-
             $priceRange = $_POST['priceRange'];
-
             $deliveryMethod = $_POST['pickingUpOrShipping'];
             $deliveryAddress = $_POST['deliveryAddress'];
             $deliveryCity = $_POST['deliveryCity'];
             $deliveryState = $_POST['deliveryState'];
             $deliveryZip = $_POST['deliveryZip'];
-
             $quoteRequestNotes = $_POST['quoteRequestNotes'];
+
+            // File Uploads
+            // NOTES ON PSR 7 FILE UPLOADS IN SLIM FRAMEWORK 3 - https://akrabat.com/psr-7-file-uploads-in-slim-3/
+            $uploadedFiles = $request->getUploadedFiles();
+
+            $location_one_image = $uploadedFiles['designLocationOne'];
+
+            if ($location_one_image->getError() === UPLOAD_ERR_OK) {
+                $location_one_image_fileName = $location_one_image->getClientFilename();
+                error_log("File name is: ". $location_one_image_fileName . "\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+
+                $location_one_image->moveTo("/var/www/html/east-end-php-site/uploads/$location_one_image_fileName");
+            }
+
+            if ($knowDesign == 'yes') {
+
+            }
+
+            if ($knowDesign == 'no') {
+                // Try to upload files from 'designIdeaFileOne' and 'designIdeaFileTwo'
+
+            }
 
             if (isset($_POST['submit'])) {
                 $name = mysql_real_escape_string($name);
@@ -324,6 +333,10 @@
             $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
             $mail->addReplyTo("$email", "$name");
 
+            // Files
+            $mail->AddAttachment("/var/www/html/east-end-php-site/uploads/$location_one_image_fileName");
+            // $mail->AddAttachment( $fileTwo );
+
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = "Quote Request from - $name";
@@ -331,14 +344,14 @@
 
             $date = new DateTime();
 
-            // if($mail->send()) {
-            //     $timestamp = $date->format('U = Y-m-dH:i:s');
-            //     error_log("Email sent successfully at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
-            // } else {
-            //     error_log("Email failed at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
-            //     error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
-            //     echo "Mailer Error: " . $mail->ErrorInfo;
-            // }
+            if($mail->send()) {
+                $timestamp = $date->format('U = Y-m-dH:i:s');
+                error_log("Email sent successfully at" . $timestamp . "\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            } else {
+                error_log("Email failed at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
+                error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+                echo "Mailer Error: " . $mail->ErrorInfo;
+            }
 
             // PROOF loading the template above works: error_log("Quote request template \n $quoteRequestTemplate", 3, "/var/www/html/error_logs/EEI_errors.log");
 
