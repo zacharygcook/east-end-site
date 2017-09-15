@@ -192,6 +192,109 @@
             return $this->view->render($response, 'quote-request.twig', $vars);          
         });
 
+        $this->post('image-upload-test', function (Request $request, Response $response, $args) {
+            // MODEL FOR HOW TO TEST IMAGES BEFORE UPLOADING THEM AND ATTACHING TO EMAIL
+            $vars = [
+                'header' => "Header"
+            ];
+            error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            // error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            // error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            // error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            // error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            // File upload errors explained http://php.net/manual/en/features.file-upload.errors.php
+
+            $uploadedFiles = $request->getUploadedFiles();
+            $directory = $this->get('upload_directory');
+
+            // Try to upload files from 'designLocationOne' and 'designLocationTwo'
+            $location_one_image = $uploadedFiles['designLocationOne'];
+
+            if ($location_one_image) {
+                error_log("Image exists in 'uploadedFiles' \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                echo "<p>Image exists in 'uploadedFiles'</p>";
+
+                if ($location_one_image->getError() === UPLOAD_ERR_OK) {
+
+                    error_log("Passed through UPLOAD_ERROR_OK test \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                    echo "<p>Survived UPLOAD ERR OK</p>";
+
+                    $location_one_image_fileName = $location_one_image->getClientFilename();
+                    
+                    // START SIZE AND FILE TYPE CHECKS
+                    $mediaType = $location_one_image->getClientMediaType();
+                    $getSize = $location_one_image->getSize();
+                    $numberOfMegaBytes = number_format($getSize / 1048576, 2);
+
+                    error_log("Media type is: $mediaType \n File size (in MB) is: $numberOfMegaBytes \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+
+                    $letThemThrough = false;
+
+                    // Test for file size:
+                    if ($numberOfMegaBytes <= 5) {
+                        $letThemThrough = true;
+                        error_log("File size is OK \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                    } else {
+                        error_log("File size is too big \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                    }
+
+                    switch ($mediaType) {
+                        case "image/jpeg":
+                            $letThemThrough = true;
+                            break;
+                        case "image/jpg":
+                            $letThemThrough = true;
+                            break;
+                        case "image/pjpeg":
+                            $letThemThrough = true;
+                            break;
+                        case "image/png":
+                            $letThemThrough = true;
+                            break;
+                        case "image/bmp":
+                            $letThemThrough = true;
+                            break;
+                        case "image/gif":
+                            $letThemThrough = true;
+                            break;
+                        case "image/svg+xml":
+                            $letThemThrough = true;
+                            break;
+                        default:
+                            $letThemThrough = false;
+                            echo "<p>Wasn't the right file type! '$mediaType' isn't right bro.</p>";
+                            error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                    }
+
+                    if ($letThemThrough == true) {
+                        echo "<p>Made it through the ringer! File is good to go.</p>";
+                        error_log("Made it through the ringer. File is fine. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                    } else {
+                        echo "<p>File is bad for some reason.</p>";
+                        error_log("File failed the test apparently. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                    }
+
+
+                } else if ($location_one_image->getError() == 1) {
+                    error_log("Failed UPLOAD_ERR_OK test. File too large for php.ini settings. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                    echo "<p>Failed UPLOAD ERR OK! File too large for php.ini settings.</p>";
+                } else {
+                    error_log("Failed UPLOAD_ERR_OK test. Not because file was too large. Error code = " . $location_one_image->getError() . "\n", 3, 
+                            "/var/www/html/error_logs/EEI_errors.log");
+                    echo "<p>Failed UPLOAD ERR OK!</p>";
+                }
+
+            } else {
+                error_log("Image doesn't exist in 'uploadedFiles' \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                echo "<p>Image doesn't exist in 'uploadedFiles'</p>";
+            }
+
+            return $this->view->render($response, 'errors-test-page.twig');
+
+        });
+
         $this->post('quote-request-submit', function (Request $request, Response $response, $args) {
             // Contact Info
             $name = $_POST['fullName'];
@@ -219,7 +322,6 @@
             $deliveryState = $_POST['deliveryState'];
             $deliveryZip = $_POST['deliveryZip'];
             $quoteRequestNotes = $_POST['quoteRequestNotes'];
-
             // File Uploads
             $uploadedFiles = $request->getUploadedFiles();
             $directory = $this->get('upload_directory');
@@ -231,120 +333,238 @@
             $timestamp = $date->format('Y-m-dH:i:s');
 
             if ($knowDesign == 'yes') {
-                // Try to upload files from 'designLocationOne' and 'designLocationTwo'
+                // Try to upload file 'designLocationOne'
                 $location_one_image = $uploadedFiles['designLocationOne'];
 
-                if ($location_one_image->getError() === UPLOAD_ERR_OK) {
-                    $location_one_image_fileName = $location_one_image->getClientFilename();
-                    // START SIZE AND FILE TYPE CHECKS
-                    $mediaType = $location_one_image->getClientMediaType();
-                    $getSize = $location_one_image->getSize();
-                    $numberOfMegaBytes = number_format($getSize / 1048576, 2);
+                if ($location_one_image) {
+                    if ($location_one_image->getError() === UPLOAD_ERR_OK) {
+                        $location_one_image_fileName = $location_one_image->getClientFilename();
+                        
+                        // START SIZE AND FILE TYPE CHECKS
+                        $mediaType = $location_one_image->getClientMediaType();
+                        $getSize = $location_one_image->getSize();
+                        $numberOfMegaBytes = number_format($getSize / 1048576, 2);
 
-                    $isOK = false;
+                        $letThemThrough = false;
 
-                    if ($mediaType = "image/jpeg"){$isOK=true;}
-                    elseif ($mediaType = "image/jpg"){$isOK=true;}
-                    elseif ($mediaType = "image/pjpeg"){$isOK=true;}
-                    elseif ($mediaType = "image/png"){$isOK=true;}
-                    elseif ($mediaType = "image/bmp"){$isOK=true;}
-                    elseif ($mediaType = "image/gif"){$isOK=true;}
-                    elseif ($mediaType = "image/svg+xml"){$isOK=true;}
+                        // Test for file size:
+                        if ($numberOfMegaBytes <= 5) {
+                            $letThemThrough = true;
+                        } else {
+                            error_log("File size is too big \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
 
-                    if ($numberOfMegaBytes > 5){$isOK=false;}
+                        switch ($mediaType) {
+                            case "image/jpeg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/jpg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/pjpeg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/png":
+                                $letThemThrough = true;
+                                break;
+                            case "image/bmp":
+                                $letThemThrough = true;
+                                break;
+                            case "image/gif":
+                                $letThemThrough = true;
+                                break;
+                            case "image/svg+xml":
+                                $letThemThrough = true;
+                                break;
+                            default:
+                                $letThemThrough = false;
+                                error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
 
-                    if ($isOK) {
-                        $location_of_file_to_attach_1 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_one_image_fileName";
-                        $location_one_image->moveTo("$location_of_file_to_attach_1");
+                        if ($letThemThrough == true) {
+                            $location_of_file_to_attach_1 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_one_image_fileName";
+                            $location_one_image->moveTo("$location_of_file_to_attach_1");                   
+                        } else {
+                            error_log("File failed the test apparently. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
                     }
                 }
 
+                // Try to upload file 'designLocationTwo'
                 $location_two_image = $uploadedFiles['designLocationTwo'];
 
-                if ($location_two_image->getError() === UPLOAD_ERR_OK) {
-                    $location_two_image_fileName = $location_two_image->getClientFilename();
-                    // START SIZE AND FILE TYPE CHECKS
-                    $mediaType = $location_two_image->getClientMediaType();
-                    $getSize = $location_two_image->getSize();
-                    $numberOfMegaBytes = number_format($getSize / 1048576, 2);
+                if ($location_two_image) {
+                    if ($location_two_image->getError() === UPLOAD_ERR_OK) {
+                        $location_two_image_fileName = $location_two_image->getClientFilename();
+                        
+                        // START SIZE AND FILE TYPE CHECKS
+                        $mediaType = $location_two_image->getClientMediaType();
+                        $getSize = $location_one_image->getSize();
+                        $numberOfMegaBytes = number_format($getSize / 1048576, 2);
 
-                    $isOK = false;
+                        $letThemThrough = false;
 
-                    if ($mediaType = "image/jpeg"){$isOK=true;}
-                    elseif ($mediaType = "image/jpg"){$isOK=true;}
-                    elseif ($mediaType = "image/pjpeg"){$isOK=true;}
-                    elseif ($mediaType = "image/png"){$isOK=true;}
-                    elseif ($mediaType = "image/bmp"){$isOK=true;}
-                    elseif ($mediaType = "image/gif"){$isOK=true;}
-                    elseif ($mediaType = "image/svg+xml"){$isOK=true;}
+                        // Test for file size:
+                        if ($numberOfMegaBytes <= 5) {
+                            $letThemThrough = true;
+                        } else {
+                            error_log("File size is too big \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
 
-                    if ($numberOfMegaBytes > 5){$isOK=false;}
+                        switch ($mediaType) {
+                            case "image/jpeg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/jpg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/pjpeg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/png":
+                                $letThemThrough = true;
+                                break;
+                            case "image/bmp":
+                                $letThemThrough = true;
+                                break;
+                            case "image/gif":
+                                $letThemThrough = true;
+                                break;
+                            case "image/svg+xml":
+                                $letThemThrough = true;
+                                break;
+                            default:
+                                $letThemThrough = false;
+                                error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
 
-                    if ($isOK) {
-                        $location_of_file_to_attach_2 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_two_image_fileName";
-                        $location_two_image->moveTo("$location_of_file_to_attach_2");                       
+                        if ($letThemThrough == true) {
+                            $location_of_file_to_attach_2 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_two_image_fileName";
+                            $location_two_image->moveTo("$location_of_file_to_attach_2");                   
+                        } else {
+                            error_log("File failed the test apparently. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
                     }
                 }
 
             }
 
             if ($knowDesign == 'no') {
-                // Try to upload files from 'designIdeaFileOne' and 'designIdeaFileTwo'
+                // Try to upload file 'designIdeaFileOne'
                 $location_one_image = $uploadedFiles['designIdeaFileOne'];
 
-                if ($location_one_image->getError() === UPLOAD_ERR_OK) {
-                    $location_one_image_fileName = $location_one_image->getClientFilename();
-                    // START SIZE AND FILE TYPE CHECKS
-                    $mediaType = $location_one_image->getClientMediaType();
-                    $getSize = $location_one_image->getSize();
-                    $numberOfMegaBytes = number_format($getSize / 1048576, 2);
+                if ($location_one_image) {
+                    if ($location_one_image->getError() === UPLOAD_ERR_OK) {
+                        $location_one_image_fileName = $location_one_image->getClientFilename();
+                        
+                        // START SIZE AND FILE TYPE CHECKS
+                        $mediaType = $location_one_image->getClientMediaType();
+                        $getSize = $location_one_image->getSize();
+                        $numberOfMegaBytes = number_format($getSize / 1048576, 2);
 
-                    $isOK = false;
+                        $letThemThrough = false;
 
-                    if ($mediaType = "image/jpeg"){$isOK=true;}
-                    elseif ($mediaType = "image/jpg"){$isOK=true;}
-                    elseif ($mediaType = "image/pjpeg"){$isOK=true;}
-                    elseif ($mediaType = "image/png"){$isOK=true;}
-                    elseif ($mediaType = "image/bmp"){$isOK=true;}
-                    elseif ($mediaType = "image/gif"){$isOK=true;}
-                    elseif ($mediaType = "image/svg+xml"){$isOK=true;}
+                        // Test for file size:
+                        if ($numberOfMegaBytes <= 5) {
+                            $letThemThrough = true;
+                        } else {
+                            error_log("File size is too big \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
 
-                    if ($numberOfMegaBytes > 5){$isOK=false;}
+                        switch ($mediaType) {
+                            case "image/jpeg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/jpg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/pjpeg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/png":
+                                $letThemThrough = true;
+                                break;
+                            case "image/bmp":
+                                $letThemThrough = true;
+                                break;
+                            case "image/gif":
+                                $letThemThrough = true;
+                                break;
+                            case "image/svg+xml":
+                                $letThemThrough = true;
+                                break;
+                            default:
+                                $letThemThrough = false;
+                                error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
 
-                    if ($isOK) {
-                        $location_of_file_to_attach_1 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_one_image_fileName";
-                        $location_one_image->moveTo("$location_of_file_to_attach_1");                        
+                        if ($letThemThrough == true) {
+                            $location_of_file_to_attach_1 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_one_image_fileName";
+                            $location_one_image->moveTo("$location_of_file_to_attach_1");                   
+                        } else {
+                            error_log("File failed the test apparently. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
                     }
                 }
 
+                // Try to upload file 'designIdeaFileTwo'
                 $location_two_image = $uploadedFiles['designIdeaFileTwo'];
 
-                if ($location_two_image->getError() === UPLOAD_ERR_OK) {
-                    $location_two_image_fileName = $location_two_image->getClientFilename();
-                    // START SIZE AND FILE TYPE CHECKS
-                    $mediaType = $location_two_image->getClientMediaType();
-                    $getSize = $location_two_image->getSize();
-                    $numberOfMegaBytes = number_format($getSize / 1048576, 2);
+                if ($location_two_image) {
+                    if ($location_two_image->getError() === UPLOAD_ERR_OK) {
+                        $location_two_image_fileName = $location_two_image->getClientFilename();
+                        
+                        // START SIZE AND FILE TYPE CHECKS
+                        $mediaType = $location_two_image->getClientMediaType();
+                        $getSize = $location_one_image->getSize();
+                        $numberOfMegaBytes = number_format($getSize / 1048576, 2);
 
-                    $isOK = false;
+                        $letThemThrough = false;
 
-                    if ($mediaType = "image/jpeg"){$isOK=true;}
-                    elseif ($mediaType = "image/jpg"){$isOK=true;}
-                    elseif ($mediaType = "image/pjpeg"){$isOK=true;}
-                    elseif ($mediaType = "image/png"){$isOK=true;}
-                    elseif ($mediaType = "image/bmp"){$isOK=true;}
-                    elseif ($mediaType = "image/gif"){$isOK=true;}
-                    elseif ($mediaType = "image/svg+xml"){$isOK=true;}
+                        // Test for file size:
+                        if ($numberOfMegaBytes <= 5) {
+                            $letThemThrough = true;
+                        } else {
+                            error_log("File size is too big \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
 
-                    if ($numberOfMegaBytes > 5){$isOK=false;}
+                        switch ($mediaType) {
+                            case "image/jpeg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/jpg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/pjpeg":
+                                $letThemThrough = true;
+                                break;
+                            case "image/png":
+                                $letThemThrough = true;
+                                break;
+                            case "image/bmp":
+                                $letThemThrough = true;
+                                break;
+                            case "image/gif":
+                                $letThemThrough = true;
+                                break;
+                            case "image/svg+xml":
+                                $letThemThrough = true;
+                                break;
+                            default:
+                                $letThemThrough = false;
+                                error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
 
-                    if ($isOK) {
-                        $location_of_file_to_attach_2 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_two_image_fileName";
-                        $location_two_image->moveTo("$location_of_file_to_attach_2");                        
-                    }    
+                        if ($letThemThrough == true) {
+                            $location_of_file_to_attach_2 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_two_image_fileName";
+                            $location_two_image->moveTo("$location_of_file_to_attach_2");                   
+                        } else {
+                            error_log("File failed the test apparently. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                        }
+                    }
                 }
-
             }
+
 
             if (isset($_POST['submit'])) {
                 $name = mysql_real_escape_string($name);
@@ -363,7 +583,7 @@
                 $deliveryDay = mysql_real_escape_string($deliveryDay);
                 $deliveryYear = mysql_real_escape_string($deliveryYear);
                 $priceRange = mysql_real_escape_string($priceRange);
-                $deliveryAddress  = mysql_real_escape_string($deliveryAddress );
+                $deliveryAddress  = mysql_real_escape_string($deliveryAddress);
                 $deliveryCity = mysql_real_escape_string($deliveryCity);
                 $deliveryState = mysql_real_escape_string($deliveryState);
                 $deliveryZip = mysql_real_escape_string($deliveryZip);
@@ -430,15 +650,14 @@
             $mail->Subject = "Quote Request from - $name";
             $mail->Body    = "$quoteRequestTemplate";
 
-            // if($mail->send()) {
-            //     $timestamp = $date->format('U = Y-m-dH:i:s');
-            //     error_log("Email sent successfully at" . $timestamp . "\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-            // } else {
-            //     error_log("Email failed at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
-            //     error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
-            //     echo "Mailer Error: " . $mail->ErrorInfo;
-            // }
-
+            if($mail->send()) {
+                $timestamp = $date->format('U = Y-m-dH:i:s');
+                error_log("Email sent successfully at" . $timestamp . "\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            } else {
+                error_log("Email failed at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
+                error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+                echo "Mailer Error: " . $mail->ErrorInfo;
+            }
 
             return $this->view->render($response, 'email/quote-request-email.twig', $vars);          
         });
