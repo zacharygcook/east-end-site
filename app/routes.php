@@ -4,10 +4,10 @@
     use Psr\Http\Message\ServerRequestInterface as Request;
     use Psr\Http\Message\ResponseInterface as Response;
 
-    // Adding PHPMailer from 'the global namespace' or something
     use PHPMailer\PHPMailer\PHPMailer;
 
-    // Docs link to 'groups' doc info - https://www.slimframework.com/docs/objects/router.html#route-groups
+    // HOW-TO ERROR LOG: error_log("Quote request template \n $quoteRequestTemplate", 3, "/var/www/html/error_logs/EEI_errors.log");
+
     $app->group('/', function () {
 
         $this->get('', function (Request $request, Response $response, $args) {
@@ -34,8 +34,6 @@
         });
 
         $this->get('products', function (Request $request, Response $response, $args) {
-
-            // error_log("Check it out", 3, "/var/www/html/error_logs/EEI_errors.log");
 
             $vars = [
                 'page' => [
@@ -115,15 +113,6 @@
             $mail->addAddress('zach@zachcookhustles.com', 'Joe User');     // Add a recipient
             $mail->addReplyTo('info@example.com', 'Information');
 
-            //Attachments
-            // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-            // Try to make it faster by not sending via SMTP???
-            // Got from this StackOverflow answer:
-            // https://stackoverflow.com/questions/27552252/sending-phpmailer-smtp-email-with-gmail-takes-long-time-1-5-seconds
-            // $mail->IsMail();
-
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = 'Here is the subject';
@@ -147,14 +136,10 @@
                 ],
             ];
 
-            // error_log("Hit home-contact-email \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-
             $name = $_POST['name'];
             $email = $_POST['email'];
             $subject = $_POST['subject'];
             $message = $_POST['message'];
-
-            // error_log("Vars: " . $name . $email . $subject . $message . "...DONE \n", 3, "/var/www/html/error_logs/EEI_errors.log");
 
             $mail = new PHPMailer;
 
@@ -220,13 +205,9 @@
             $knowDesign = $_POST['knowWhatDesignOrNot'];
             $decorationLocationOne = $_POST['decorationLocationOne'];
             $numberColorsLocationOne = $_POST['numberColorsLocationOne'];
-            // TODO: put in file upload for 
             $decorationLocationTwo = $_POST['decorationLocationTwo'];
             $numberColorsLocationTwo = $_POST['numberColorsLocationTwo'];
-            // TODO: put in file upload for 'designLocationTwo'
             $designIdeaNotes = $_POST['designIdeaNotes'];
-            // TODO: put in file upload for 'designIdeaFileOne'
-            // TODO: put in file upload for 'designIdeaFileTwo'
             // Delivery / Budget Info
             $deliveryMonth = $_POST['deliveryMonth'];
             $deliveryDay = $_POST['deliveryDay'];
@@ -240,24 +221,128 @@
             $quoteRequestNotes = $_POST['quoteRequestNotes'];
 
             // File Uploads
-            // NOTES ON PSR 7 FILE UPLOADS IN SLIM FRAMEWORK 3 - https://akrabat.com/psr-7-file-uploads-in-slim-3/
             $uploadedFiles = $request->getUploadedFiles();
+            $directory = $this->get('upload_directory');
 
-            $location_one_image = $uploadedFiles['designLocationOne'];
+            $location_of_file_to_attach_1 = "";
+            $location_of_file_to_attach_2 = "";
 
-            if ($location_one_image->getError() === UPLOAD_ERR_OK) {
-                $location_one_image_fileName = $location_one_image->getClientFilename();
-                error_log("File name is: ". $location_one_image_fileName . "\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-
-                $location_one_image->moveTo("/var/www/html/east-end-php-site/uploads/$location_one_image_fileName");
-            }
+            $date = new DateTime();
+            $timestamp = $date->format('Y-m-dH:i:s');
 
             if ($knowDesign == 'yes') {
+                // Try to upload files from 'designLocationOne' and 'designLocationTwo'
+                $location_one_image = $uploadedFiles['designLocationOne'];
+
+                if ($location_one_image->getError() === UPLOAD_ERR_OK) {
+                    $location_one_image_fileName = $location_one_image->getClientFilename();
+                    // START SIZE AND FILE TYPE CHECKS
+                    $mediaType = $location_one_image->getClientMediaType();
+                    $getSize = $location_one_image->getSize();
+                    $numberOfMegaBytes = number_format($getSize / 1048576, 2);
+
+                    $isOK = false;
+
+                    if ($mediaType = "image/jpeg"){$isOK=true;}
+                    elseif ($mediaType = "image/jpg"){$isOK=true;}
+                    elseif ($mediaType = "image/pjpeg"){$isOK=true;}
+                    elseif ($mediaType = "image/png"){$isOK=true;}
+                    elseif ($mediaType = "image/bmp"){$isOK=true;}
+                    elseif ($mediaType = "image/gif"){$isOK=true;}
+                    elseif ($mediaType = "image/svg+xml"){$isOK=true;}
+
+                    if ($numberOfMegaBytes > 5){$isOK=false;}
+
+                    if ($isOK) {
+                        $location_of_file_to_attach_1 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_one_image_fileName";
+                        $location_one_image->moveTo("$location_of_file_to_attach_1");
+                    }
+                }
+
+                $location_two_image = $uploadedFiles['designLocationTwo'];
+
+                if ($location_two_image->getError() === UPLOAD_ERR_OK) {
+                    $location_two_image_fileName = $location_two_image->getClientFilename();
+                    // START SIZE AND FILE TYPE CHECKS
+                    $mediaType = $location_two_image->getClientMediaType();
+                    $getSize = $location_two_image->getSize();
+                    $numberOfMegaBytes = number_format($getSize / 1048576, 2);
+
+                    $isOK = false;
+
+                    if ($mediaType = "image/jpeg"){$isOK=true;}
+                    elseif ($mediaType = "image/jpg"){$isOK=true;}
+                    elseif ($mediaType = "image/pjpeg"){$isOK=true;}
+                    elseif ($mediaType = "image/png"){$isOK=true;}
+                    elseif ($mediaType = "image/bmp"){$isOK=true;}
+                    elseif ($mediaType = "image/gif"){$isOK=true;}
+                    elseif ($mediaType = "image/svg+xml"){$isOK=true;}
+
+                    if ($numberOfMegaBytes > 5){$isOK=false;}
+
+                    if ($isOK) {
+                        $location_of_file_to_attach_2 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_two_image_fileName";
+                        $location_two_image->moveTo("$location_of_file_to_attach_2");                       
+                    }
+                }
 
             }
 
             if ($knowDesign == 'no') {
                 // Try to upload files from 'designIdeaFileOne' and 'designIdeaFileTwo'
+                $location_one_image = $uploadedFiles['designIdeaFileOne'];
+
+                if ($location_one_image->getError() === UPLOAD_ERR_OK) {
+                    $location_one_image_fileName = $location_one_image->getClientFilename();
+                    // START SIZE AND FILE TYPE CHECKS
+                    $mediaType = $location_one_image->getClientMediaType();
+                    $getSize = $location_one_image->getSize();
+                    $numberOfMegaBytes = number_format($getSize / 1048576, 2);
+
+                    $isOK = false;
+
+                    if ($mediaType = "image/jpeg"){$isOK=true;}
+                    elseif ($mediaType = "image/jpg"){$isOK=true;}
+                    elseif ($mediaType = "image/pjpeg"){$isOK=true;}
+                    elseif ($mediaType = "image/png"){$isOK=true;}
+                    elseif ($mediaType = "image/bmp"){$isOK=true;}
+                    elseif ($mediaType = "image/gif"){$isOK=true;}
+                    elseif ($mediaType = "image/svg+xml"){$isOK=true;}
+
+                    if ($numberOfMegaBytes > 5){$isOK=false;}
+
+                    if ($isOK) {
+                        $location_of_file_to_attach_1 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_one_image_fileName";
+                        $location_one_image->moveTo("$location_of_file_to_attach_1");                        
+                    }
+                }
+
+                $location_two_image = $uploadedFiles['designIdeaFileTwo'];
+
+                if ($location_two_image->getError() === UPLOAD_ERR_OK) {
+                    $location_two_image_fileName = $location_two_image->getClientFilename();
+                    // START SIZE AND FILE TYPE CHECKS
+                    $mediaType = $location_two_image->getClientMediaType();
+                    $getSize = $location_two_image->getSize();
+                    $numberOfMegaBytes = number_format($getSize / 1048576, 2);
+
+                    $isOK = false;
+
+                    if ($mediaType = "image/jpeg"){$isOK=true;}
+                    elseif ($mediaType = "image/jpg"){$isOK=true;}
+                    elseif ($mediaType = "image/pjpeg"){$isOK=true;}
+                    elseif ($mediaType = "image/png"){$isOK=true;}
+                    elseif ($mediaType = "image/bmp"){$isOK=true;}
+                    elseif ($mediaType = "image/gif"){$isOK=true;}
+                    elseif ($mediaType = "image/svg+xml"){$isOK=true;}
+
+                    if ($numberOfMegaBytes > 5){$isOK=false;}
+
+                    if ($isOK) {
+                        $location_of_file_to_attach_2 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_two_image_fileName";
+                        $location_two_image->moveTo("$location_of_file_to_attach_2");                        
+                    }    
+                }
 
             }
 
@@ -311,7 +396,6 @@
                 'quoteRequestNotes' => $quoteRequestNotes,
                 'knowDesign' => $knowDesign,
                 'deliveryMethod' => $deliveryMethod,
-
             ];
 
             // DO EMAIL STUFF
@@ -333,33 +417,27 @@
             $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
             $mail->addReplyTo("$email", "$name");
 
-            // Files
-            $mail->AddAttachment("/var/www/html/east-end-php-site/uploads/$location_one_image_fileName");
-            // $mail->AddAttachment( $fileTwo );
+
+            if ($location_of_file_to_attach_1 !== "") {
+                $mail->AddAttachment("$location_of_file_to_attach_1");
+            }
+            if ($location_of_file_to_attach_2 !== "") {
+                $mail->AddAttachment("$location_of_file_to_attach_2");
+            }
 
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = "Quote Request from - $name";
             $mail->Body    = "$quoteRequestTemplate";
 
-            $date = new DateTime();
-
-            if($mail->send()) {
-                $timestamp = $date->format('U = Y-m-dH:i:s');
-                error_log("Email sent successfully at" . $timestamp . "\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-            } else {
-                error_log("Email failed at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
-                error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
-                echo "Mailer Error: " . $mail->ErrorInfo;
-            }
-
-            // PROOF loading the template above works: error_log("Quote request template \n $quoteRequestTemplate", 3, "/var/www/html/error_logs/EEI_errors.log");
-
-            // USEFUL LINKS FOR EMAIL TEMPLATING
-            // https://stackoverflow.com/questions/40695157/slim-framework-and-email-template-rendering-issue-with-phpmailer
-            // http://www.xeweb.net/2009/12/31/sending-emails-the-right-way-using-phpmailer-and-email-templates/
-            // https://stackoverflow.com/questions/38158181/send-html-emails-using-phpmailer-and-html-templates
-            // http://www.phpdevtips.com/2014/07/using-phpmailer-spectacular-php-emails/
+            // if($mail->send()) {
+            //     $timestamp = $date->format('U = Y-m-dH:i:s');
+            //     error_log("Email sent successfully at" . $timestamp . "\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            // } else {
+            //     error_log("Email failed at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
+            //     error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+            //     echo "Mailer Error: " . $mail->ErrorInfo;
+            // }
 
 
             return $this->view->render($response, 'email/quote-request-email.twig', $vars);          

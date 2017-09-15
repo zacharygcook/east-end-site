@@ -192,6 +192,14 @@
             <p> {{ quoteRequestNotes }} </p>
         </div>
         {% endif %}
+
+        {% if errorMessage != '' %}
+        <div style="width: 100%; text-align: center; font-weight: 600; background-color: #ff6666; padding-left: 5px; padding-top: 5px; padding-bottom: 5px; min-height: 25px;">
+            <p><b>ERROR MESSAGE: </b></p>
+            <p> {{ errorMessage }} </p>
+        </div>
+        {% endif %}
+
         
     </div>
 

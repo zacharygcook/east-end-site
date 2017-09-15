@@ -15,3 +15,5 @@ $container['view'] = function ($c) {
 
     return $view;
 };
+
+$container['upload_directory'] = __DIR__ . '/../uploads';
