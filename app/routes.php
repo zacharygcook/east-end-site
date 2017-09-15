@@ -77,6 +77,10 @@
             return $this->view->render($response, 'quote-request.twig', $vars);    
         });
 
+        $this->get('quote-request-success', function (Request $request, Response $response, $args) {
+            return $this->view->render($response, 'quote-request-success.twig');
+        });
+
         $this->get('email-test', function (Request $request, Response $response, $args) {
 
             $vars = [
@@ -659,7 +663,7 @@
                 echo "Mailer Error: " . $mail->ErrorInfo;
             }
 
-            return $this->view->render($response, 'email/quote-request-email.twig', $vars);          
+            return $this->view->render($response, 'quote-request-success.twig');        
         });
 
     });
