@@ -222,7 +222,7 @@
             $desiredQuantity = $_POST['desiredQuantity'];
             $colorOfItems = $_POST['colorOfItems'];
 
-            // TODO: Add something to collect whether they know what design they want or not
+            $knowDesign = $_POST['knowWhatDesignOrNot'];
 
             // If yes, know about they're design
             $decorationLocationOne = $_POST['decorationLocationOne'];
@@ -244,8 +244,7 @@
 
             $priceRange = $_POST['priceRange'];
 
-            // TODO: Add something to collect pickup or delivery
-
+            $deliveryMethod = $_POST['pickingUpOrShipping'];
             $deliveryAddress = $_POST['deliveryAddress'];
             $deliveryCity = $_POST['deliveryCity'];
             $deliveryState = $_POST['deliveryState'];
@@ -274,19 +273,9 @@
                 $deliveryCity = mysql_real_escape_string($deliveryCity);
                 $deliveryState = mysql_real_escape_string($deliveryState);
                 $deliveryZip = mysql_real_escape_string($deliveryZip);
+                $deliveryMethod = mysql_real_escape_string($deliveryMethod);
                 $quoteRequestNotes = mysql_real_escape_string($quoteRequestNotes);
-            }
-
-            if ($designIdeaNotes !== '') {
-                $knowDesign = "no";
-            } else {
-                $knowDesign = "yes";
-            }
-
-            if ($deliveryAddress !== '') {
-                $deliveryMethod = 'shipping';
-            } else {
-                $deliveryMethod = 'Office Pickup';
+                $knowDesign = mysql_real_escape_string($knowDesign);
             }
 
             $vars = [
@@ -311,7 +300,6 @@
                 'deliveryState' => $deliveryState,
                 'deliveryZip' => $deliveryZip,
                 'quoteRequestNotes' => $quoteRequestNotes,
-
                 'knowDesign' => $knowDesign,
                 'deliveryMethod' => $deliveryMethod,
 
@@ -343,14 +331,14 @@
 
             $date = new DateTime();
 
-            if($mail->send()) {
-                $timestamp = $date->format('U = Y-m-dH:i:s');
-                error_log("Email sent successfully at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
-            } else {
-                error_log("Email failed at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
-                error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
-                echo "Mailer Error: " . $mail->ErrorInfo;
-            }
+            // if($mail->send()) {
+            //     $timestamp = $date->format('U = Y-m-dH:i:s');
+            //     error_log("Email sent successfully at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
+            // } else {
+            //     error_log("Email failed at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
+            //     error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+            //     echo "Mailer Error: " . $mail->ErrorInfo;
+            // }
 
             // PROOF loading the template above works: error_log("Quote request template \n $quoteRequestTemplate", 3, "/var/www/html/error_logs/EEI_errors.log");
 
