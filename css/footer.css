@@ -127,8 +127,6 @@
 
 /* END Stylings for the top section of the footer */
 
-
-
 /* Stylings for the bottom section of the footer */
 
 
@@ -138,7 +136,6 @@
   padding-top: 0;
   text-align: center;
 }
-
 
 
 .fine-print-bottom-footer-wrapper {
@@ -162,6 +159,69 @@
   color: #00b140;
 }
 
-
-
 /* END Stylings for the bottom section of the footer */
+
+
+/* START Stylings for footer responsive < 1200px */
+
+#footer-hide-on-xs {
+  display: block;
+}
+#footer-show-on-xs {
+  display: none;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .footer-brand-logo {
+    max-width: 115%;
+    height: auto;
+    margin-left: -20px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .footer-social-media-img {
+    width: 24px;
+    height: auto;
+  }
+  .footer-social-media-img-hover {
+    width: 24px;
+    height: auto;
+  }
+  .footer-section-header {
+    font-size: 20px;
+  }
+  .footer-section-subheader {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    height: 290px;
+  }
+  body {
+    /* Margin bottom by footer height */
+    margin-bottom: 290px;
+    padding-bottom: 150px;
+  }
+  .bottom-footer-content {
+    display: none;
+  }
+  .social-media-footer-wrapper {
+    padding-top: 0;
+    margin-top: 10px;
+    padding-bottom: 10px;
+  }
+  .footer-top-content-right-section {
+    text-align: center;
+  }
+  #footer-hide-on-xs {
+    display: none;
+  }
+  #footer-show-on-xs {
+    display: block;
+  }
+}
+
+/* END Stylings for footer responsive < 1200px */
