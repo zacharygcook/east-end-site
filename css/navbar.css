@@ -5,6 +5,30 @@
 /* Some decent yet simple docs on making your own navbar:
   https://www.w3schools.com/css/css_navbar.asp */
 
+/* Mobile nav styling */
+
+#mobile-nav-main-tag {
+  background-color: #121212 !important;
+}
+
+.nav-link {
+  text-align: left;
+}
+
+.nav-item {
+
+}
+
+.nav-item:hover {
+
+}
+
+.active .nav-link {
+  
+}
+
+/* END Mobile nav styling */
+
 .zach-navbar-wrapper {
   position: fixed;
   top: 0px;
@@ -15,6 +39,16 @@
   padding-bottom: 5px;
   padding-top: 5px;
   font-family: 'Montserrat';
+}
+
+
+@media (max-width: 991px) {
+  #desktop-navbar-outer-wrap {
+    display: none !important;
+  }
+  #desktop-navbar-inner-wrap {
+    display: none !important;
+  }
 }
 
 .company-logo-wrapper {
