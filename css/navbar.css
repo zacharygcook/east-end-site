@@ -105,6 +105,11 @@
   color: #00b140;
 }
 
+.zach-navbar-li .active {
+  color: #00b140 !important;
+  font-weight: 600;
+}
+
 .zach-navbar-inner-content-wrapper {
   margin: 0 auto;
   height: 100%;
