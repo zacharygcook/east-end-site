@@ -52,6 +52,12 @@
   }
 }
 
+@media (max-width: 450px) {
+  #navbar-logo-mobile-img {
+    max-height: 32px !important;
+  }
+}
+
 .company-logo-wrapper {
   display: inline-block;
   height: 100%;
