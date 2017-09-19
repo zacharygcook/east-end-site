@@ -15,16 +15,17 @@
   text-align: left;
 }
 
-.nav-item {
-
+.nav-item .nav-link {
+  color: #e5e5e5 !important;
 }
 
-.nav-item:hover {
-
+.nav-item .nav-link:hover {
+  font-weight: 600;
 }
 
 .active .nav-link {
-  
+  color: #00b140 !important;
+  font-weight: 600;
 }
 
 /* END Mobile nav styling */
@@ -42,7 +43,7 @@
 }
 
 
-@media (max-width: 991px) {
+@media (max-width: 768px) {
   #desktop-navbar-outer-wrap {
     display: none !important;
   }

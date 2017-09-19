@@ -6,6 +6,14 @@
 
     use PHPMailer\PHPMailer\PHPMailer;
 
+    // $active = [
+    //     'home' => '',
+    //     'products' => '',
+    //     'services' => '',
+    //     'designs' => '',
+    //     'quoteRequest' => ''
+    // ];
+
     // HOW-TO ERROR LOG: error_log("Quote request template \n $quoteRequestTemplate", 3, "/var/www/html/error_logs/EEI_errors.log");
 
     $app->group('/', function () {
@@ -14,10 +22,20 @@
 
             $vars = [
                 'page' => [
-                'title' => 'East End Ink',
-                'description' => 'Best apparel company in Austin'
+                    'title' => 'East End Ink',
+                    'description' => 'Best apparel company in Austin',
+
+                ],
+                'active' => [
+                    'home' => 'active',
+                    'products' => '',
+                    'services' => '',
+                    'designs' => '',
+                    'quoteRequest' => '',           
                 ],
             ];
+
+            echo $vars;
 
             return $this->view->render($response, 'home.twig', $vars);    
         });
@@ -25,10 +43,18 @@
 
             $vars = [
                 'page' => [
-                'title' => 'East End Ink',
-                'description' => 'Best apparel company in Austin'
+                    'title' => 'East End Ink',
+                    'description' => 'Best apparel company in Austin',
+                ],
+                'active' => [
+                    'home' => 'active',
+                    'products' => '',
+                    'services' => '',
+                    'designs' => '',
+                    'quoteRequest' => '',           
                 ],
             ];
+            error_log("vars = $vars \n", 3, "/var/www/html/error_logs/EEI_errors.log");
 
             return $this->view->render($response, 'home.twig', $vars);    
         });
@@ -39,6 +65,13 @@
                 'page' => [
                 'title' => 'East End Ink',
                 'description' => 'Best apparel company in Austin'
+                ],
+                'active' => [
+                    'home' => '',
+                    'products' => 'active',
+                    'services' => '',
+                    'designs' => '',
+                    'quoteRequest' => '',           
                 ],
             ];
             return $this->view->render($response, 'products.twig', $vars);    
@@ -51,6 +84,13 @@
                 'title' => 'East End Ink',
                 'description' => 'Best apparel company in Austin'
                 ],
+                'active' => [
+                    'home' => '',
+                    'products' => '',
+                    'services' => 'active',
+                    'designs' => '',
+                    'quoteRequest' => '',           
+                ],
             ];
             return $this->view->render($response, 'services.twig', $vars);    
         });
@@ -62,6 +102,13 @@
                 'title' => 'East End Ink',
                 'description' => 'Best apparel company in Austin'
                 ],
+                'active' => [
+                    'home' => '',
+                    'products' => '',
+                    'services' => '',
+                    'designs' => 'active',
+                    'quoteRequest' => '',           
+                ],
             ];
             return $this->view->render($response, 'designs.twig', $vars);    
         });
@@ -72,6 +119,13 @@
                 'page' => [
                 'title' => 'East End Ink',
                 'description' => 'Best apparel company in Austin'
+                ],
+                'active' => [
+                    'home' => '',
+                    'products' => '',
+                    'services' => '',
+                    'designs' => '',
+                    'quoteRequest' => 'active',           
                 ],
             ];
             return $this->view->render($response, 'quote-request.twig', $vars);    

@@ -10,19 +10,19 @@
 
 		<div style="padding-left: 15px; padding-top: 20px;" class="collapse navbar-collapse" id="mobileNavbarID">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
+				<li class="nav-item {{ active.home }}">
 					<a class="nav-link" href="index">Home </a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item {{ active.products }}">
 					<a class="nav-link" href="products">Products</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item {{ active.services }}">
 					<a class="nav-link" href="services">Services</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item {{ active.designs }}">
 					<a class="nav-link" href="designs">Designs</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item {{ active.quoteRequest }}">
 					<a class="nav-link" href="quote-request">Request a Quote</a>
 				</li>
 			</ul>
@@ -32,8 +32,8 @@
 
 
 	<!-- START DESKTOP NAVBAR -->
-	<div id="desktop-navbar-outer-wrap" class="d-xs-none d-sm-none zach-navbar-wrapper">
-		<div id="desktop-navbar-inner-wrap" class="d-xs-none d-sm-none zach-navbar-inner-content-wrapper">
+	<div id="desktop-navbar-outer-wrap" class="d-xs-none zach-navbar-wrapper">
+		<div id="desktop-navbar-inner-wrap" class="d-xs-none zach-navbar-inner-content-wrapper">
 
 			<div class="company-logo-wrapper">
 				<a href="index">
