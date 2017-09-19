@@ -54,7 +54,6 @@
                     'quoteRequest' => '',           
                 ],
             ];
-            error_log("vars = $vars \n", 3, "/var/www/html/error_logs/EEI_errors.log");
 
             return $this->view->render($response, 'home.twig', $vars);    
         });
