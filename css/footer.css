@@ -202,8 +202,12 @@
   }
   body {
     /* Margin bottom by footer height */
-    margin-bottom: 290px;
-    padding-bottom: 150px;
+    margin-bottom: 290px !important;
+    padding-bottom: 0px;
+  }
+  .footer-brand-logo {
+    max-width: 90%;
+    height: auto;
   }
   .bottom-footer-content {
     display: none;

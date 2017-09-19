@@ -13,3 +13,23 @@ body {
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
+
+.only-show-xs  {
+	display: block !important;
+}
+
+.hide-on-xs {
+	display: block !important;
+}
+
+@media (min-width: 768px) {
+	.only-show-xs {
+		display: none !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.hide-on-xs {
+		display: none !important;
+	}
+}

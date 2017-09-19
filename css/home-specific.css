@@ -44,6 +44,23 @@
 	display: inline-block;
 }
 
+@media (max-width: 767px) {
+	.fancy-home-divider {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.fancy-hm-left {
+		width: 40%;
+	}
+	.fancy-hm-right {
+		width: 40%;
+	}
+	.fancy-hm-center {
+		width: 8%;
+		margin: 0 auto;
+	}
+}
+
 /*
 	SPLASH WRAPPER STYLING
 */
@@ -117,12 +134,12 @@
 
 @media (max-width: 767px) {
 	#splash-wrapper {
-		padding-top: 35px;
+		padding-top: 100px;
 		padding-bottom: 30px;
-		min-height: 250px !important;
+		min-height: 570px !important;
 	}
 	.home-splash-content-wrapper {
-		min-height: 550px;
+		min-height: 570px !important;
 	}
 	.home-page-tagline-holder {
 		max-width: 95%;
@@ -170,6 +187,10 @@
 	width: 1100px;
 	margin: 0 auto;
 	text-align: center;
+}
+
+.inner-ribbon-responsive-wrapper {
+	display: inline-block;
 }
 
 .service-ribbon-text {
@@ -229,15 +250,68 @@
 	padding-left: 20px;
 }
 
+/*
+	START OUR ADVANTAGES RESPONSIVE STYLING 
+*/
+
+/* First, just mobile */
+
+@media (max-width: 767px) {
+	.our-advantages-section-wrapper {
+		height: 1300px;
+	}
+	.our-advantages-sub-header {
+		margin-bottom: -10px;
+		padding-bottom: 0;
+	}
+	.advantages-icon-row {
+		min-height: 1300px;
+		padding-top: 15px;
+		padding-top: 15px;
+	}
+	.inner-little-ribbon-wrapper {
+		width: 100%;
+	}
+	.inner-ribbon-responsive-wrapper {
+		display: block;
+		width: 100%;
+	}
+	.service-ribbon-text {
+		font-size: 12px;
+		line-height: 23px;
+	}
+	.tear-drop-separator {
+		display: none;
+	}
+	.quarter-width-feature-wrapper {
+		padding-bottom: 0;
+		padding-top: 0;
+		margin-bottom: -10px;
+	}
+	#special-feature-icon {
+		width: 180px !important;
+	}
+	.feature-icon {
+		width: 150px !important;
+		height: auto;
+	}
+}
+
+
+
+/* END mobile */
+
+
+
+
+/*
+	END OUR ADVANTAGES RESPONSIVE STYLING
+*/
+
 
 /*
 	END OUR ADVANTAGES WRAPPER STYLING
 */
-
-
-
-
-
 
 /*
 	OUR BRANDS WRAPPER STYLING
@@ -308,13 +382,58 @@
 	cursor: pointer;
 }
 
+/*
+	START OUR BRANDS RESPONSIVE STYLING 
+*/
+
+/* First, just mobile */
+
+@media (max-width: 767px) {
+	.brands-header-line {
+		font-size: 24px;
+		line-height: 27px;
+		font-weight: 600;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	.zach-brand-browse-btn {
+		width: 300px;
+		height: 35px;
+		margin-top: 20px;
+		font-size: 20px;
+		line-height: 35px;
+	}
+	.brand-promo-image {
+		width: 90%;
+		height: auto;
+		margin: 0 auto;
+		padding-bottom: 15px;
+	}
+	.brand-promo-image-wrapper {
+		width: 50% !important;
+		display: inline-block !important;
+	}
+	.brands-subheader-text {
+		font-size: 14px;
+		line-height: 17px;
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+
+
+/* END mobile */
+
+
+/*
+	END OUR BRANDS RESPONSIVE STYLING
+*/
+
 
 /*
 	END OUR BRANDS WRAPPER STYLING
 */
-
-
-
 
 /*
 	OUR SERVICES WRAPPER STYLING
@@ -338,13 +457,30 @@
 	margin-top: 30px;
 }
 
+/*
+	START OUR SERVICES RESPONSIVE STYLING 
+*/
+
+@media (max-width: 767px) {
+	.services-image-section img {
+		width: 60%;
+		height: auto;
+		margin: 0 auto;
+		margin-bottom: 7px;
+	}
+	.services-image-section {
+		padding-top: 7px;
+		padding-bottom: 7px;
+	}
+}
+
+/*
+	END OUR SERVICES RESPONSIVE STYLING
+*/
 
 /*
 	END OUR SERVICES WRAPPER STYLING
 */
-
-
-
 
 /*
 	CONTACT US WRAPPER STYLING
@@ -436,6 +572,56 @@
 	cursor: pointer;
 }
 
+/*
+	START CONTACT US RESPONSIVE STYLING 
+*/
+
+/* First, just mobile */
+
+@media (max-width: 767px) {
+	.contact-info-block {
+		padding-right: 0;
+		margin-right: 0;
+		width: 100%;
+		padding-left: 0;
+	}
+	#contact-info-block-holder {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.contact-info-header {
+		padding-bottom: 0;
+		margin-bottom: 0;
+	}
+	.home-contact-us-section-wrapper {
+		padding-top: 0;
+	}
+	.fancy-contact-us-form {
+		width: 100%;
+		padding-top: 25px;
+		padding-bottom: 25px;
+	}
+	.fancy-contact-form-text-input {
+		width: 90%;
+	}
+
+	.fancy-contact-form-message {
+		width: 90%;
+	}
+
+	.fancy-contact-us-form-submit-btn {
+		width: 90%;
+	}
+}
+
+
+
+/* END mobile */
+
+
+/*
+	END CONTACT US RESPONSIVE STYLING
+*/
 
 /*
 	END CONTACT US WRAPPER STYLING
