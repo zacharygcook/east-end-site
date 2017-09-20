@@ -43,7 +43,7 @@
 
 			<div class="navbar-connect-with-us-wrapper">
 				<div class="top-connect-with-us-section-nav">
-					<a class="contact-us-link" href="#">
+					<a id="contact-us-dropdown-activate" class="contact-us-link" href="#">
 						<h5 class="top-navbar-tiny-text">CONTACT US</h5>
 					</a>
 
@@ -99,3 +99,20 @@
 		</div>
 	</div>
 	<!-- END DESKTOP NAVBAR -->
+
+	<div id="contact-us-form-nav-dropdown">
+		<form id="dropdown-contact-form" method="post" action="/drop-down-contact-form">
+
+			<p style="text-align: left; padding-left: 8px; padding-bottom: 4px;" class="fancy-form-field-header">Name:</p>
+			<input type="text" id="name" name="name" class="dropdown-contact-form-text-input" required>
+
+			<p style="text-align: left; padding-left: 8px; padding-bottom: 4px;" class="fancy-form-field-header">Email: </p>
+			<input type="email" id="email" name="email" class="dropdown-contact-form-text-input" required>
+
+			<p style="text-align: left; padding-left: 8px; padding-bottom: 4px;" class="fancy-form-field-header">Message: </p>
+			<textarea id="message" name="message" rows="6" class="dropdown-contact-form-message" required></textarea>
+
+			<button class="dropdown-form-submit-btn" type="submit">Send</button>
+
+		</form>
+	</div>
