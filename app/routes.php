@@ -6,15 +6,9 @@
 
     use PHPMailer\PHPMailer\PHPMailer;
 
-    // $active = [
-    //     'home' => '',
-    //     'products' => '',
-    //     'services' => '',
-    //     'designs' => '',
-    //     'quoteRequest' => ''
-    // ];
-
-    // HOW-TO ERROR LOG: error_log("Quote request template \n $quoteRequestTemplate", 3, "/var/www/html/error_logs/EEI_errors.log");
+    // How I include SMTP service password
+    include __DIR__ . '/../config/keys/email.php';
+    // error_log("\n Password = ". $SMTP2GOpassword . "\n", 3, "/var/www/html/error_logs/EEI_errors.log");
 
     $app->group('/', function () {
 
@@ -141,7 +135,7 @@
             $mail->Host = 'mail.smtp2go.com';                    // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
             $mail->Username = 'zach@zachcookhustles.com';                 // SMTP username
-            $mail->Password = 'w9xAzaSNeXYa';                          // SMTP password
+            $mail->Password = $SMTP2GOpassword;                          // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 2525;                                    // TCP port to connect to
 
@@ -236,7 +230,7 @@
             $mail->Host = 'mail.smtp2go.com';                    // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
             $mail->Username = 'zach@zachcookhustles.com';                 // SMTP username
-            $mail->Password = getenv("SMTP_PASSWORD");                           // SMTP password
+            $mail->Password = $SMTP2GOpassword;                             // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 2525;                                    // TCP port to connect to
 
@@ -280,7 +274,7 @@
             $mail->Host = 'mail.smtp2go.com';                    // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
             $mail->Username = 'zach@zachcookhustles.com';                 // SMTP username
-            $mail->Password = getenv("SMTP_PASSWORD");                           // SMTP password
+            $mail->Password = $SMTP2GOpassword;                            // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 2525;                                    // TCP port to connect to
 
@@ -740,7 +734,7 @@
             $mail->Host = 'mail.smtp2go.com';                    // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                               // Enable SMTP authentication
             $mail->Username = 'zach@zachcookhustles.com';                 // SMTP username
-            $mail->Password = getenv("SMTP_PASSWORD");                         // SMTP password
+            $mail->Password = $SMTP2GOpassword;                          // SMTP password
             $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
             $mail->Port = 2525;                                    // TCP port to connect to
 
