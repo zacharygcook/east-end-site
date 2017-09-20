@@ -6,13 +6,14 @@
 
     use PHPMailer\PHPMailer\PHPMailer;
 
-    // How I include SMTP service password
-    include __DIR__ . '/../config/keys/email.php';
-    // error_log("\n Password = ". $SMTP2GOpassword . "\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-
     $app->group('/', function () {
 
+        error_log("\n $SMTP2GOpassword <---", 3, "/var/www/html/error_logs/EEI_errors.log");
+
         $this->get('', function (Request $request, Response $response, $args) {
+
+            $testThing = $request->getAttribute('testThing');
+            error_log("\n Test thing: $testThing \n", 3, "/var/www/html/error_logs/EEI_errors.log");
 
             $vars = [
                 'page' => [
@@ -30,6 +31,7 @@
             ];
             return $this->view->render($response, 'home.twig', $vars);    
         });
+        
         $this->get('index', function (Request $request, Response $response, $args) {
 
             $vars = [
@@ -126,7 +128,9 @@
         });
 
         $this->post('drop-down-contact-form', function (Request $request, Response $response, $args) {
-            error_log("The right endpoint did get hit.", 3, "/var/www/html/error_logs/EEI_errors.log");
+            include __DIR__ . '/../config/keys/email.php';
+
+            // error_log("The right endpoint did get hit. Password is: $SMTP2GOpassword \n", 3, "/var/www/html/error_logs/EEI_errors.log");
 
             $mail = new PHPMailer;
 
@@ -213,6 +217,7 @@
         });
 
         $this->get('email-test', function (Request $request, Response $response, $args) {
+            include __DIR__ . '/../config/keys/email.php';
 
             $vars = [
                 'page' => [
@@ -298,110 +303,9 @@
             return $this->view->render($response, 'home.twig', $vars);          
         });
 
-        $this->post('image-upload-test', function (Request $request, Response $response, $args) {
-            // MODEL FOR HOW TO TEST IMAGES BEFORE UPLOADING THEM AND ATTACHING TO EMAIL
-            $vars = [
-                'header' => "Header"
-            ];
-            error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-            error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-            error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-            // error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-            // error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-            // error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-            // error_log("-\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-            // File upload errors explained http://php.net/manual/en/features.file-upload.errors.php
-
-            $uploadedFiles = $request->getUploadedFiles();
-            $directory = $this->get('upload_directory');
-
-            // Try to upload files from 'designLocationOne' and 'designLocationTwo'
-            $location_one_image = $uploadedFiles['designLocationOne'];
-
-            if ($location_one_image) {
-                error_log("Image exists in 'uploadedFiles' \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-                echo "<p>Image exists in 'uploadedFiles'</p>";
-
-                if ($location_one_image->getError() === UPLOAD_ERR_OK) {
-
-                    error_log("Passed through UPLOAD_ERROR_OK test \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-                    echo "<p>Survived UPLOAD ERR OK</p>";
-
-                    $location_one_image_fileName = $location_one_image->getClientFilename();
-                    
-                    // START SIZE AND FILE TYPE CHECKS
-                    $mediaType = $location_one_image->getClientMediaType();
-                    $getSize = $location_one_image->getSize();
-                    $numberOfMegaBytes = number_format($getSize / 1048576, 2);
-
-                    error_log("Media type is: $mediaType \n File size (in MB) is: $numberOfMegaBytes \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-
-                    $letThemThrough = false;
-
-                    // Test for file size:
-                    if ($numberOfMegaBytes <= 5) {
-                        $letThemThrough = true;
-                        error_log("File size is OK \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-                    } else {
-                        error_log("File size is too big \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-                    }
-
-                    switch ($mediaType) {
-                        case "image/jpeg":
-                            $letThemThrough = true;
-                            break;
-                        case "image/jpg":
-                            $letThemThrough = true;
-                            break;
-                        case "image/pjpeg":
-                            $letThemThrough = true;
-                            break;
-                        case "image/png":
-                            $letThemThrough = true;
-                            break;
-                        case "image/bmp":
-                            $letThemThrough = true;
-                            break;
-                        case "image/gif":
-                            $letThemThrough = true;
-                            break;
-                        case "image/svg+xml":
-                            $letThemThrough = true;
-                            break;
-                        default:
-                            $letThemThrough = false;
-                            echo "<p>Wasn't the right file type! '$mediaType' isn't right bro.</p>";
-                            error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/error_logs/EEI_errors.log");
-                    }
-
-                    if ($letThemThrough == true) {
-                        echo "<p>Made it through the ringer! File is good to go.</p>";
-                        error_log("Made it through the ringer. File is fine. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-                    } else {
-                        echo "<p>File is bad for some reason.</p>";
-                        error_log("File failed the test apparently. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-                    }
-
-
-                } else if ($location_one_image->getError() == 1) {
-                    error_log("Failed UPLOAD_ERR_OK test. File too large for php.ini settings. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-                    echo "<p>Failed UPLOAD ERR OK! File too large for php.ini settings.</p>";
-                } else {
-                    error_log("Failed UPLOAD_ERR_OK test. Not because file was too large. Error code = " . $location_one_image->getError() . "\n", 3, 
-                            "/var/www/html/error_logs/EEI_errors.log");
-                    echo "<p>Failed UPLOAD ERR OK!</p>";
-                }
-
-            } else {
-                error_log("Image doesn't exist in 'uploadedFiles' \n", 3, "/var/www/html/error_logs/EEI_errors.log");
-                echo "<p>Image doesn't exist in 'uploadedFiles'</p>";
-            }
-
-            return $this->view->render($response, 'errors-test-page.twig');
-
-        });
-
         $this->post('quote-request-submit', function (Request $request, Response $response, $args) {
+            include __DIR__ . '/../config/keys/email.php';
+
             // Contact Info
             $name = $_POST['fullName'];
             $organization = $_POST['orgName'];

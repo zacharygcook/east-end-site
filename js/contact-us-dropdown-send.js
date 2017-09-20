@@ -12,10 +12,17 @@ jQuery(function($){
 			console.log("Got an else...");
 			$('#contact-us-form-nav-dropdown').css({"display": "none"});
 			$('#dropdown-contact-form').css({"display": "none"});
-			$('#body').css({"overflow-y": "scroll"})
+			$('#body').css({"overflow-y": "scroll"});
 		}
 		
 	});
+
+	showSuccessStuff = function() {
+		$('#contact-us-form-nav-dropdown').css({"display": "none"});
+		$('#dropdown-contact-form').css({"display": "none"});
+		$('#body').css({"overflow-y": "scroll"});
+		$('#contactSuccessModal').modal({ show: true });
+	}
 
 	var contactForm = $('#dropdown-contact-form');
 
@@ -30,8 +37,9 @@ jQuery(function($){
             url: contactForm.attr('action'),
             data: contactForm.serialize(),
             success: function (data) {
-                console.log('Submission was successful.');
+                console.log('SUCCESS');
                 console.log(data);
+                showSuccessStuff();
             },
             error: function (data) {
                 console.log('An error occurred.');
