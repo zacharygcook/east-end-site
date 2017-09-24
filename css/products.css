@@ -1,0 +1,66 @@
+.products-page-wrapper {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.top-products-wrapper {
+  width: 100%;
+  min-height: 200px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: left;
+}
+
+#top-products-underliner-div {
+  border-top: 2px solid black;
+  width: 570px;
+  height: 0;
+  margin-bottom: 12px;
+}
+
+.products-page-selling-point-header {
+  padding-bottom: 5px;
+  margin-bottom: 0 !important;
+}
+
+.products-page-selling-point-text {
+  padding-bottom: 10px;
+  padding-top: 7px;
+  margin-bottom: 4px !important;
+  padding-left: 2px;
+  padding-right: 80px;
+}
+
+#products-qr-btn-wrapper {
+  padding-top: 50px;
+}
+
+#products-page-sell-quote-request-btn {
+  height: 90px;
+  width: 70%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 30px;
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 4px;
+  background: rgba(0,  0,  0,  0.80);
+  color: #e5e5e5;
+  border: 2px solid black;
+}
+
+#products-page-sell-quote-request-btn:hover {
+  background: rgba(0,  0,  0,  1);
+  color: white;
+  cursor: pointer;
+}
+
+
+
+/*
+	Design the product rows
+*/
+
+.product-rows-layout-wrapper {
+
+}
