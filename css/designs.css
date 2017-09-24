@@ -1,14 +1,57 @@
 
 
 .designs-page-wrapper {
-	
+  font-family: 'Montserrat', sans-serif;
 }
 
 .top-designs-wrapper {
   width: 100%;
-  height: 200px;
+  min-height: 200px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: left;
 }
 
+#top-designs-underliner-div {
+  border-top: 2px solid black;
+  width: 570px;
+  height: 0;
+  margin-bottom: 12px;
+}
+
+.designs-page-selling-point-header {
+  padding-bottom: 5px;
+  margin-bottom: 0 !important;
+}
+
+.designs-page-selling-point-text {
+  padding-bottom: 10px;
+  padding-top: 7px;
+  margin-bottom: 4px !important;
+  padding-left: 2px;
+  padding-right: 80px;
+}
+
+
+.design-contact-field-header {
+  padding-top: 13px;
+  margin-bottom: -2px !important;
+}
+
+.design-contact-form-submit-btn {
+  border: none;
+  height: 30px;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 8px;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.design-contact-form-submit-btn:hover {
+  background-color: #b3afae;
+  cursor: pointer;
+}
 
 /* 
 	Designs grid styling
@@ -45,11 +88,6 @@
   display: inline-block;
   float: left;
 }
-
-/*.img-container:hover .img-wrap {
-  transform: scale(1.08);
-  transition: transform cubic-bezier(0.4, 0, 0.2, 1) 450ms;
-}*/
 
 .img-wrap {
   width: 100%;
