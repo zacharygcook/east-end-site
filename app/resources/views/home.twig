@@ -261,7 +261,7 @@
 						GET IN TOUCH
 					</h2>
 
-					<form class="fancy-contact-us-form" action="{{ base_url() }}/home-contact-email" method="POST" enctype="multipart/form-data">
+					<form id="fancy-home-contact-form" class="fancy-contact-us-form" action="/home-contact-email" method="POST" enctype="multipart/form-data">
 						<h6 class="hide-on-xs contact-us-section-small-text">
 							WE WOULD LOVE TO HEAR FROM YOU. PLEASE DROP US A LINE BELOW IF YOU HAVE ANY QUESTIONS OR CONCERNS.
 						</h6>
@@ -281,6 +281,10 @@
 							SUBMIT
 						</button>
 					</form>
+
+					<div id="fancy-home-contact-form-success-div">
+						<h2>Success!</h2>
+					</div>
 				</div>
 			</div>
 		</div>

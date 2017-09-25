@@ -145,7 +145,6 @@
 
             // Get the form fields and remove whitespace.
             $name = strip_tags(trim($_POST["name"]));
-                    $name = str_replace(array("\r","\n"),array(" "," "),$name);
             $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
             $message = trim($_POST["message"]);
 
@@ -157,14 +156,19 @@
                 exit;
             }
 
-            // Set the email subject.
-            $subject = "New contact Us: from $name";
+            $vars = [
+                'name' => $name,
+                'email' => $email,
+                'message' => $message
+            ];
 
-            // Build the email content.
-            $email_content = "Name: $name\n";
-            $email_content .= "Email: $email\n\n";
-            $email_content .= "Message:\n$message\n";
-
+            // DO EMAIL STUFF
+            $contactEmailBody = $this->view->fetch('email/simple-contact-email.twig', $vars);
+            
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = "Contact Us Message Regarding: $subject";
+            $mail->Body    = $contactEmailBody;
             //Recipients
             $mail->setFrom("$email", "$name");
             $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
@@ -189,83 +193,17 @@
         });
 
         $this->get('check-things', function (Request $request, Response $response, $args) {
-
             phpinfo();
-
             var_dump("Server: ", $_SERVER, "\n\n");
-
             echo "<p></p>";
-
             var_dump(getenv('TEST'));
-
-            // echo "<p></p>";
-
-            // var_dump($_SERVER['TEST']);
-
-            // echo "<p></p>";
-
-
-            // var_dump($_ENV['TEST']);
-
             echo "<p></p>";
-
             var_dump("Environment: ", $_ENV, "\n\n");
-
-            // var_dump(getenv('PASSWORD'));
-
             return $this->view->render($response, 'errors-test-page.twig');
         });
 
-        $this->get('email-test', function (Request $request, Response $response, $args) {
-            include __DIR__ . '/../config/keys/email.php';
-
-            $vars = [
-                'page' => [
-                'title' => 'East End Ink',
-                'description' => 'Best apparel company in Austin'
-                ],
-            ];
-
-            $mail = new PHPMailer;
-
-            $correctPassword = getenv("SMTP_PASSWORD");
-
-            $mail->SMTPDebug = 0;                                 // Enable verbose debug output
-            $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'mail.smtp2go.com';                    // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'zach@zachcookhustles.com';                 // SMTP username
-            $mail->Password = $SMTP2GOpassword;                             // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 2525;                                    // TCP port to connect to
-
-            //Recipients
-            $mail->setFrom('from@example.com', 'Mailer');
-            $mail->addAddress('zach@zachcookhustles.com', 'Joe User');     // Add a recipient
-            $mail->addReplyTo('info@example.com', 'Information');
-
-            //Content
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = 'Here is the subject';
-            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-            if($mail->send()) {
-              echo "Message sent!";
-            } else {
-              echo "Mailer Error: " . $mail->ErrorInfo;
-            }
-
-            return $this->view->render($response, 'quote-request.twig', $vars);          
-        });
-
         $this->post('home-contact-email', function (Request $request, Response $response, $args) {
-            $vars = [
-                'page' => [
-                'title' => 'East End Ink',
-                'description' => 'Best apparel company in Austin'
-                ],
-            ];
+            include __DIR__ . '/../config/keys/email.php';
 
             $name = $_POST['name'];
             $email = $_POST['email'];
@@ -287,20 +225,30 @@
             $mail->setFrom("$email", "$name");
             $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
             $mail->addReplyTo("$email", "$name");
+
+            $vars = [
+                'name' => $name,
+                'email' => $email,
+                'subject' => $subject,
+                'message' => $message
+            ];
+
+            // DO EMAIL STUFF
+            $contactEmailBody = $this->view->fetch('email/simple-contact-email.twig', $vars);
             
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = "$subject";
-            $mail->Body    = '<b>What the customer wants to say: </b> ' . "$message";
+            $mail->Subject = "Contact Us Message Regarding: $subject";
+            $mail->Body    = $contactEmailBody;
 
             if($mail->send()) {
-              echo "Message sent!";
-              echo "alert('Contact us email recieved.);";
+                $responseToSend = $response->withStatus(200);
             } else {
-              echo "Mailer Error: " . $mail->ErrorInfo;
+                $responseToSend = $response->withStatus(404);
+                error_log("Mailer Error: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
             }
 
-            return $this->view->render($response, 'home.twig', $vars);          
+            return $responseToSend;      
         });
 
         $this->post('quote-request-submit', function (Request $request, Response $response, $args) {

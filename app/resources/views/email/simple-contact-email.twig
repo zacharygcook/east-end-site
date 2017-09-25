@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Quote request email">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Quote Request</title>
+
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+
+    {% include 'partials/email-nav.twig' %}
+
+    <div id="email-body" style="min-height: 100px; padding-top: 15px; padding-bottom: 25px;
+        padding-left: 25px; padding-right: 25px;">
+        
+        {% if email != '' %}
+        <h2><b>Message From: </b>{{ email }}</h2>
+        {% endif %}
+
+        <h2><b>Message:</b></h2>
+
+        <p>
+
+            {{ message }}
+
+        </p>
+        
+    </div>
+
+    {% include 'partials/email-footer.twig' %}
+
+    </body>
+</html>

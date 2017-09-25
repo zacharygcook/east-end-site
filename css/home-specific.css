@@ -528,6 +528,10 @@
 	margin: 0 auto;
 }
 
+#dropdown-contact-form-success-div {
+	display: none;
+}
+
 .fancy-contact-us-form {
 	width: 700px;
 	padding-top: 25px;

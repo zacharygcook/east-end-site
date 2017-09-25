@@ -1,6 +1,5 @@
 jQuery(function($){
 	$('#contact-us-dropdown-activate').click(function() {
-		console.log("Display = ", $('#contact-us-form-nav-dropdown').css("display"));
 
 		if ($('#contact-us-form-nav-dropdown').css("display") == "none") {
 			var windowHeight = $(window).height();
