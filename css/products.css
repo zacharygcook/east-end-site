@@ -49,6 +49,15 @@
   border: 2px solid black;
 }
 
+#qr-products-page-btn-wrap {
+
+}
+
+#qr-products-page-btn-wrap:hover {
+  text-decoration: none;
+  color: white;
+}
+
 #products-page-sell-quote-request-btn:hover {
   background: rgba(0,  0,  0,  1);
   color: white;
@@ -79,4 +88,38 @@
 .potentially-wide-product-example-image {
   max-width: 100%;
   height: auto;
+}
+
+.prod-linkable {
+  position: relative;
+}
+
+.prod-linkable:hover {
+  cursor: pointer;
+}
+
+.prod-linkable:hover .tooltip-wrapper {
+  display: block;
+}
+
+.tooltip-wrapper {
+  /* Positioning */
+  position: absolute;
+  bottom: -45px;
+  left: 38px;
+  max-width: 300px;
+  /* End positioning */
+
+
+  display: none;
+  background-color: black;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  color: white;
+}
+
+.product-link-tool-tip-text {
+  vertical-align: middle;
+  padding-top: 15px;
 }
