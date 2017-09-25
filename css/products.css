@@ -64,3 +64,19 @@
 .product-rows-layout-wrapper {
 
 }
+
+.products-row {
+  min-height: 400px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.brand-product-example-image {
+  height: 300px;
+  width: auto;
+}
+
+.potentially-wide-product-example-image {
+  max-width: 100%;
+  height: auto;
+}
