@@ -18,13 +18,24 @@ $(function() {
     if ($(this).css("position") == "relative") {
      
       $(this).attr('id', 'active-img-container');
-      $(this).css({"padding-top": "135px"});
 
-      $(this).parent().prepend("<div id='replace-missing-container-div'></div>");
+      // If larger than mobile
+      if ($(window).width() > 767) {
+        $(this).css({"padding-top": "135px"});
+        $(this).parent().prepend("<div id='replace-missing-container-div'></div>");
+        // Change the image's styling
+        var newImgHeight = $(window).height() * 0.7;
+        $(this).find("img").css({ "height": newImgHeight, "width": "auto", "position": "relative"});
+      }
 
-      // Change the image's styling
-      var newImgHeight = $(window).height() * 0.7;
-      $(this).find("img").css({ "height": newImgHeight, "width": "auto", "position": "relative"});
+      // If mobile
+      if ($(window).width() < 768) {
+        $(this).css({"padding-top": "100px"});
+        $(this).parent().prepend("<div id='replace-missing-container-div'></div>");
+        // Change the image's styling
+        var newImgWidth = $(window).width() * 0.8;
+        $(this).find("img").css({ "width": newImgWidth, "height": "auto", "position": "relative"});
+      }
 
     } else {
       $(this).attr('id', '');

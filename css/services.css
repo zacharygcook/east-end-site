@@ -43,6 +43,9 @@
   #vehicle-wrap-services-wrapper {
     height: 160px;
   }
+  .services-page-selling-point-header {
+    font-size: 1.4rem;
+  }
 }
 
 .services-page-selling-point-header {
