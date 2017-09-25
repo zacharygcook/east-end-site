@@ -33,4 +33,7 @@ body {
 	.hide-on-xs {
 		display: none !important;
 	}
+	body {
+		padding-top: 59px;
+	}
 }

@@ -34,6 +34,38 @@
 	background-color: #dcd8d6;
 }
 
+@media (max-width: 767px) {
+	#quote-request-form {
+		width: 100%;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.quote-request-header {
+		font-size: 1.8rem;
+	}
+	.quote-request-master-wrapper {
+		padding-top: 25px;
+	}
+	.qr-form-text-input {
+		height: 28px !important;
+		line-height: 28px !important;
+		font-size: 20px !important;
+	}
+	#picking-up-btn {
+		margin-bottom: 15px;
+	}
+	#sureOfDesignButton {
+		margin-bottom: 15px;
+	}
+	#month-input {
+		display: block;
+		margin-bottom: 8px;
+	}
+	.quote-request-submit-btn {
+		width: 98% !important;
+	}
+}
+
 .qr-textarea {
 	padding-left: 8px;
 }
