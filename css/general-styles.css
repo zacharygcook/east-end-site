@@ -23,6 +23,10 @@ body {
 	display: block !important;
 }
 
+.link-no-underline:hover {
+	text-decoration: none;
+}
+
 @media (min-width: 768px) {
 	.only-show-xs {
 		display: none !important;

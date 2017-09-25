@@ -379,8 +379,16 @@
 .zach-brand-browse-btn:hover {
 	background-color: black;
 	color: white;
-	cursor: pointer;
 }
+
+.zach-brand-browse-link {
+	color: #e5e5e5;
+}
+
+.zach-brand-browse-link:hover {
+	color: white;
+}
+
 
 /*
 	START OUR BRANDS RESPONSIVE STYLING 
