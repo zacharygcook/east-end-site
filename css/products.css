@@ -17,6 +17,23 @@
   margin-bottom: 12px;
 }
 
+@media (max-width: 767px) {
+  #top-products-underliner-div {
+    width: 80%;
+  }
+  .products-page-selling-point-header {
+    font-size: 1.3rem;
+  }
+  #products-qr-btn-wrapper {
+    padding-top: 0;
+    margin-top: -15px;
+  }
+  #products-page-sell-quote-request-btn {
+    height: 120px !important;
+    padding-top: 0;
+  }
+}
+
 .products-page-selling-point-header {
   padding-bottom: 5px;
   margin-bottom: 0 !important;
@@ -85,9 +102,21 @@
   width: auto;
 }
 
+.brand-product-example-image {
+  padding-bottom: 10px;
+}
+
 .potentially-wide-product-example-image {
   max-width: 100%;
   height: auto;
+}
+
+@media (max-width: 767px) {
+  .potentially-wide-product-example-image {
+    width: 70%;
+    height: auto;
+    padding-bottom: 10px;
+  }
 }
 
 .prod-linkable {
@@ -100,6 +129,7 @@
 
 .prod-linkable:hover .tooltip-wrapper {
   display: block;
+  z-index: 5;
 }
 
 .tooltip-wrapper {
