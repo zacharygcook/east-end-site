@@ -79,33 +79,55 @@
 }
 
 .services-row {
-  min-height: 100px;
+  min-height: 250px;
   padding-top: 25px;
   padding-bottom: 25px;
 }
 
+.services-explanation-row {
+  min-height: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 #design-services-wrapper {
-  background-image: url("./img/services/design-services.jpg");
+  background-image: url("../img/services/design-services.jpg");
+  background-size: 100% auto;
   background-position: cover no-repeat;
   overflow: hidden;
 }
 
 #screen-printing-services-wrapper {
-  
+  background-image: url("../img/services/screen-printing-services.jpg");
+  background-size: 100% auto;
+  background-position: cover no-repeat;
+  overflow: hidden;
 }
 
 #cut-and-sew-services-wrapper {
-  
+  background-image: url("../img/services/cut-and-sew-services.png");
+  background-size: 100% auto;
+  background-position: cover no-repeat;
+  overflow: hidden;
 }
 
 #promotional-item-services-wrapper {
-  
+  background-image: url("../img/services/promotional-product-services.jpg");
+  background-size: 100% auto;
+  background-position: cover no-repeat;
+  overflow: hidden;
 }
 
 #finishing-services-wrapper {
-  
+  background-image: url("../img/services/finishing-services.jpg");
+  background-size: 100% auto;
+  background-position: cover no-repeat;
+  overflow: hidden;
 }
 
 #vehicle-wrap-services-wrapper {
-  
+  background-image: url("../img/services/vehicle-wrap-services.png");
+  background-size: 100% auto;
+  background-position: cover no-repeat;
+  overflow: hidden;
 }
