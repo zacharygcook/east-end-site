@@ -51,6 +51,11 @@
   cursor: pointer;
 }
 
+#designer-contact-form-success-div {
+  display: none;
+  text-align: center;
+}
+
 @media (max-width: 767px) {
   .designs-page-selling-point-header {
     font-size: 1.4rem;

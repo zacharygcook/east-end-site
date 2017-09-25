@@ -25,7 +25,7 @@
 						</p>
 					</div>
 					<div class="col-md-3">
-						<form id="designer-contact-form" method="post" action="/drop-down-contact-form">
+						<form id="designer-contact-form" method="post" action="/design-contact-form">
 							<p style="text-align: left; padding-left: 8px; padding-bottom: 4px;" class="design-contact-field-header">Email: </p>
 							<input type="email" id="email" name="email" placeholder="Email we can reach you at" 
 								style="font-size: 14px; height: 28px; line-height: 28px;" class="dropdown-contact-form-text-input" required>
@@ -38,6 +38,13 @@
 							</div>
 
 						</form>
+						<div id="designer-contact-form-success-div">
+							
+							<i class="fa fa-check-circle-o fa-4x" style="padding-top: 0px; height: auto; color: green;"></i>
+
+							<h2>Message Successfully Submitted!</h2>
+							<p>We'll be sure to respond within 24 hours.</p>
+						</div>
 					</div>
 					<div class="col-md-2"></div>
 				</div>
@@ -102,5 +109,6 @@
 	</div>
 
 	<script src="./js/designs-page-grid.js" ></script>
+	<script src="./js/design-form-send.js" ></script>
 
 {% endblock %}

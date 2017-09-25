@@ -192,6 +192,70 @@
 
         });
 
+        $this->post('design-contact-form', function (Request $request, Response $response, $args) {
+            include __DIR__ . '/../config/keys/email.php';
+
+            // error_log("The right endpoint did get hit. Password is: $SMTP2GOpassword \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+
+            $mail = new PHPMailer;
+
+            $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host = 'mail.smtp2go.com';                    // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                               // Enable SMTP authentication
+            $mail->Username = 'zach@zachcookhustles.com';                 // SMTP username
+            $mail->Password = $SMTP2GOpassword;                          // SMTP password
+            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 2525;                                    // TCP port to connect to
+
+            // Get form data
+            $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+            $message = trim($_POST["message"]);
+
+            // Check that data was sent to the mailer.
+            if (empty($message)) {
+                // Set a 400 (bad request) response code and exit.
+                http_response_code(400);
+                echo "Oops! There was a problem with your submission. Please complete the form and try again.";
+                exit;
+            }
+
+            $vars = [
+                'email' => $email,
+                'message' => $message
+            ];
+
+            // DO EMAIL STUFF
+            $contactEmailBody = $this->view->fetch('email/simple-contact-email.twig', $vars);
+            
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = "Design Page Contact Form Submission! From $email";
+            $mail->Body    = $contactEmailBody;
+            //Recipients
+            $mail->setFrom("$email", "Unkown Name");
+            $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
+            $mail->addReplyTo("$email", "Unkown Name");
+            
+            //Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = "$subject";
+            $mail->Body    = "$contactEmailBody";
+
+            if($mail->send()) {
+                $responseToSend = $response->withStatus(200);
+            } else {
+                $responseToSend = $response->withStatus(404);
+                error_log("Mailer Error: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+            }
+
+            error_log("Response we're sending: ". $responseToSend, 3, "/var/www/html/error_logs/EEI_errors.log");
+
+            return $responseToSend;  
+
+        });
+
+
         $this->get('check-things', function (Request $request, Response $response, $args) {
             phpinfo();
             var_dump("Server: ", $_SERVER, "\n\n");
