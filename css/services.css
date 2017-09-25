@@ -17,6 +17,34 @@
   margin-bottom: 12px;
 }
 
+@media (max-width: 767px) {
+  #top-services-underliner-div {
+    width: 80%;
+  }
+  #design-services-wrapper {
+    height: 160px;
+  }
+  #screen-printing-services-wrapper {
+    height: 160px;
+  }
+
+  #cut-and-sew-services-wrapper {
+    height: 160px;
+  }
+
+  #promotional-item-services-wrapper {
+    height: 160px;
+  }
+
+  #finishing-services-wrapper {
+    height: 160px;
+  }
+
+  #vehicle-wrap-services-wrapper {
+    height: 160px;
+  }
+}
+
 .services-page-selling-point-header {
   padding-bottom: 5px;
   margin-bottom: 0 !important;
