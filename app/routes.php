@@ -167,7 +167,7 @@
             
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = "Contact Us Message Regarding: $subject";
+            $mail->Subject = "Contact Us Message from EEI site";
             $mail->Body    = $contactEmailBody;
             //Recipients
             $mail->setFrom("$email", "$name");
@@ -177,7 +177,7 @@
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
             $mail->Subject = "$subject";
-            $mail->Body    = "$email_content";
+            $mail->Body    = "$contactEmailBody";
 
             if($mail->send()) {
                 $responseToSend = $response->withStatus(200);
