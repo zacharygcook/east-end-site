@@ -1,0 +1,111 @@
+.services-page-wrapper {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.top-services-wrapper {
+  width: 100%;
+  min-height: 200px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: left;
+}
+
+#top-services-underliner-div {
+  border-top: 2px solid black;
+  width: 570px;
+  height: 0;
+  margin-bottom: 12px;
+}
+
+.services-page-selling-point-header {
+  padding-bottom: 5px;
+  margin-bottom: 0 !important;
+}
+
+.services-page-selling-point-text {
+  padding-bottom: 10px;
+  padding-top: 7px;
+  margin-bottom: 4px !important;
+  padding-left: 2px;
+  padding-right: 80px;
+}
+
+#services-qr-btn-wrapper {
+  padding-top: 50px;
+}
+
+#services-page-sell-quote-request-btn {
+  height: 90px;
+  width: 70%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 30px;
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 4px;
+  background: rgba(0,  0,  0,  0.80);
+  color: #e5e5e5;
+  border: 2px solid black;
+}
+
+#qr-services-page-btn-wrap {
+
+}
+
+#qr-services-page-btn-wrap:hover {
+  text-decoration: none;
+  color: white;
+}
+
+#services-page-sell-quote-request-btn:hover {
+  background: rgba(0,  0,  0,  1);
+  color: white;
+  cursor: pointer;
+}
+
+
+
+/*
+	Design the product rows
+*/
+
+.service-rows-layout-wrapper {
+
+}
+
+.service-text-explanation-wrapper {
+  text-align: left;
+}
+
+.services-row {
+  min-height: 100px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+#design-services-wrapper {
+  background-image: url("./img/services/design-services.jpg");
+  background-position: cover no-repeat;
+  overflow: hidden;
+}
+
+#screen-printing-services-wrapper {
+  
+}
+
+#cut-and-sew-services-wrapper {
+  
+}
+
+#promotional-item-services-wrapper {
+  
+}
+
+#finishing-services-wrapper {
+  
+}
+
+#vehicle-wrap-services-wrapper {
+  
+}
