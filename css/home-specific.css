@@ -66,12 +66,38 @@
 */
 
 .home-splash-content-wrapper {
-	background-image: url('http://res.cloudinary.com/zacharycook/image/upload/v1505079188/screen-printing-machine-splash-backdrop-darkened_gxgo4y.jpg');
+	/* background-image: url('http://res.cloudinary.com/zacharycook/image/upload/v1505079188/screen-printing-machine-splash-backdrop-darkened_gxgo4y.jpg'); */
+	margin-top: -980px;
 	min-height: 760px;
 	width: 100%;
-	padding-top: 130px;
+	padding-top: 210px;
 	text-align: center;
 	font-family: 'Montserrat', sans-serif;
+	z-index: 3;
+}
+
+.splash-video-wrapper {
+	position: relative;
+	width: 100%;
+	height: 900px;
+	overflow: hidden;
+	z-index: -3;
+}
+
+.splash-video {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+#eei-splash-video {
+  filter: brightness(40%);
 }
 
 .home-page-tagline-holder {
@@ -220,6 +246,8 @@
 	padding-top: 25px;
 	padding-bottom: 25px;
 	font-family: 'Montserrat', sans-serif;
+	z-index: 3;
+	background-color: white;
 }
 
 .quarter-width-feature-wrapper {
