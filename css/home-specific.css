@@ -239,6 +239,10 @@
 	position: relative;
 }
 
+.green-on-hover:hover {
+	color: #02a03c !important;
+}
+
 
 .our-advantages-section-wrapper {
 	min-height: 400px;
@@ -533,7 +537,7 @@
 .contact-info-block {
 	width: 500px;
 	min-height: 300px;
-	padding-left: 45px;
+	padding-left: 0;
 	padding-top: 45px;
 	padding-bottom: 45px;
 	margin-right: 155px;
