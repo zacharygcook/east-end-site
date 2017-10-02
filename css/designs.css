@@ -80,7 +80,7 @@
 
 .img-row {
   width: 100%;
-  height: 350px;
+  height: 420px;
   display: block;
   position: relative;
 }
@@ -88,7 +88,7 @@
 .img-container {
   position: relative;
   width: 25%;
-  height: 350px;
+  height: 420px;
   display: inline-block;
   float: left;
   overflow: hidden;
@@ -97,13 +97,63 @@
   text-align: center;
 }
 
-@media (max-width: 767px) {
+/*
+  Making images look good no matter the screen size
+
+  Mostly for smaller laptops, HUGE screens, and tablets 
+*/
+
+@media (min-width: 1201px) and (max-width: 1700px) {
+  .img-row {
+
+  }
   .img-container {
-    width: 50%;
+
+  }
+  .img-wrap {
+
+  }
+  .gallery-img {
+    min-height: 100%;
+    width: auto;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+  .img-row {
+    height: 275px;
+  }
+  .img-container {
+    height: 275px;
+  }
+  .img-wrap {
+    height: 275px;
+  }
+  .gallery-img {
+  }
+}
+
+@media (min-width: 768px) and (max-width: 999px) {
+  .img-row {
+    height: 200px;
+  }
+  .img-container {
     height: 200px;
   }
   .img-wrap {
     height: 200px;
+  }
+  .gallery-img {
+  }
+}
+
+@media (max-width: 767px) {
+  .img-container {
+    width: 50%;
+    height: 210px;
+  }
+  .img-wrap {
+    height: 210px;
   }
   #replace-missing-container-div {
     height: 200px;
@@ -120,7 +170,7 @@
 
 .img-wrap {
   width: 100%;
-  height: 350px;
+  height: 420px;
   position: relative;
   transition: transform ease-in-out 300ms;
 }
