@@ -51,6 +51,10 @@
   cursor: pointer;
 }
 
+/*.img-wrap {
+  background-color: #202020;
+}*/
+
 #designer-contact-form-success-div {
   display: none;
   text-align: center;
