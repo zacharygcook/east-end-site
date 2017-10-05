@@ -171,7 +171,8 @@
             $mail->Body    = $contactEmailBody;
             //Recipients
             $mail->setFrom("$email", "$name");
-            $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
+            $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
+            $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
             $mail->addReplyTo("$email", "$name");
             
             //Content
@@ -234,7 +235,8 @@
             $mail->Body    = $contactEmailBody;
             //Recipients
             $mail->setFrom("$email", "Unkown Name");
-            $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
+            $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
+            $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
             $mail->addReplyTo("$email", "Unkown Name");
             
             //Content
@@ -287,7 +289,8 @@
 
             //Recipients
             $mail->setFrom("$email", "$name");
-            $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
+            $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
+            $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
             $mail->addReplyTo("$email", "$name");
 
             $vars = [
@@ -656,7 +659,8 @@
 
             //Recipients
             $mail->setFrom("$email", "$name");
-            $mail->addAddress('zach@zachcookhustles.com', 'Zachary Cook');     // Add a recipient
+            $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
+            $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
             $mail->addReplyTo("$email", "$name");
 
 
