@@ -177,7 +177,6 @@
             
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = "$subject";
             $mail->Body    = "$contactEmailBody";
 
             if($mail->send()) {
@@ -241,7 +240,6 @@
             
             //Content
             $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = "$subject";
             $mail->Body    = "$contactEmailBody";
 
             if($mail->send()) {
