@@ -659,6 +659,7 @@
             $mail->setFrom("$email", "$name");
             $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
             $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
+            $mail->addCC('estel@eastendink.com', 'Estel');       // CCing zach for now
             $mail->addReplyTo("$email", "$name");
 
 
