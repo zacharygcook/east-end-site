@@ -8,12 +8,12 @@
 
     $app->group('/', function () {
 
-        error_log("\n $SMTP2GOpassword <---", 3, "/var/www/html/error_logs/EEI_errors.log");
+        // error_log("\n $SMTP2GOpassword <---", 3, "/var/www/html/// error_logs/EEI_errors.log");
 
         $this->get('', function (Request $request, Response $response, $args) {
 
             $testThing = $request->getAttribute('testThing');
-            error_log("\n Test thing: $testThing \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            // error_log("\n Test thing: $testThing \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
 
             $vars = [
                 'page' => [
@@ -130,7 +130,7 @@
         $this->post('drop-down-contact-form', function (Request $request, Response $response, $args) {
             include __DIR__ . '/../config/keys/email.php';
 
-            // error_log("The right endpoint did get hit. Password is: $SMTP2GOpassword \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            // error_log("The right endpoint did get hit. Password is: $SMTP2GOpassword \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
 
             $mail = new PHPMailer;
 
@@ -183,10 +183,10 @@
                 $responseToSend = $response->withStatus(200);
             } else {
                 $responseToSend = $response->withStatus(404);
-                error_log("Mailer Error: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+                // error_log("Mailer Error: " . $mail->ErrorInfo, 3, "/var/www/html/// error_logs/EEI_errors.log");
             }
 
-            error_log("Response we're sending: ". $responseToSend, 3, "/var/www/html/error_logs/EEI_errors.log");
+            // error_log("Response we're sending: ". $responseToSend, 3, "/var/www/html/// error_logs/EEI_errors.log");
 
             return $responseToSend;  
 
@@ -195,7 +195,7 @@
         $this->post('design-contact-form', function (Request $request, Response $response, $args) {
             include __DIR__ . '/../config/keys/email.php';
 
-            // error_log("The right endpoint did get hit. Password is: $SMTP2GOpassword \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+            // error_log("The right endpoint did get hit. Password is: $SMTP2GOpassword \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
 
             $mail = new PHPMailer;
 
@@ -246,10 +246,10 @@
                 $responseToSend = $response->withStatus(200);
             } else {
                 $responseToSend = $response->withStatus(404);
-                error_log("Mailer Error: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+                // error_log("Mailer Error: " . $mail->ErrorInfo, 3, "/var/www/html/// error_logs/EEI_errors.log");
             }
 
-            error_log("Response we're sending: ". $responseToSend, 3, "/var/www/html/error_logs/EEI_errors.log");
+            // error_log("Response we're sending: ". $responseToSend, 3, "/var/www/html/// error_logs/EEI_errors.log");
 
             return $responseToSend;  
 
@@ -310,7 +310,7 @@
                 $responseToSend = $response->withStatus(200);
             } else {
                 $responseToSend = $response->withStatus(404);
-                error_log("Mailer Error: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+                // error_log("Mailer Error: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
             }
 
             return $responseToSend;      
@@ -374,7 +374,7 @@
                         if ($numberOfMegaBytes <= 5) {
                             $letThemThrough = true;
                         } else {
-                            error_log("File size is too big \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                            // error_log("File size is too big \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
 
                         switch ($mediaType) {
@@ -401,14 +401,14 @@
                                 break;
                             default:
                                 $letThemThrough = false;
-                                error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                                // error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
 
                         if ($letThemThrough == true) {
                             $location_of_file_to_attach_1 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_one_image_fileName";
                             $location_one_image->moveTo("$location_of_file_to_attach_1");                   
                         } else {
-                            error_log("File failed the test apparently. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                            // error_log("File failed the test apparently. \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
                     }
                 }
@@ -431,7 +431,7 @@
                         if ($numberOfMegaBytes <= 5) {
                             $letThemThrough = true;
                         } else {
-                            error_log("File size is too big \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                            // error_log("File size is too big \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
 
                         switch ($mediaType) {
@@ -458,14 +458,14 @@
                                 break;
                             default:
                                 $letThemThrough = false;
-                                error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                                // error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
 
                         if ($letThemThrough == true) {
                             $location_of_file_to_attach_2 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_two_image_fileName";
                             $location_two_image->moveTo("$location_of_file_to_attach_2");                   
                         } else {
-                            error_log("File failed the test apparently. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                            // error_log("File failed the test apparently. \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
                     }
                 }
@@ -491,7 +491,7 @@
                         if ($numberOfMegaBytes <= 5) {
                             $letThemThrough = true;
                         } else {
-                            error_log("File size is too big \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                            // error_log("File size is too big \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
 
                         switch ($mediaType) {
@@ -518,14 +518,14 @@
                                 break;
                             default:
                                 $letThemThrough = false;
-                                error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                                // error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
 
                         if ($letThemThrough == true) {
                             $location_of_file_to_attach_1 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_one_image_fileName";
                             $location_one_image->moveTo("$location_of_file_to_attach_1");                   
                         } else {
-                            error_log("File failed the test apparently. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                            // error_log("File failed the test apparently. \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
                     }
                 }
@@ -548,7 +548,7 @@
                         if ($numberOfMegaBytes <= 5) {
                             $letThemThrough = true;
                         } else {
-                            error_log("File size is too big \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                            // error_log("File size is too big \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
 
                         switch ($mediaType) {
@@ -575,14 +575,14 @@
                                 break;
                             default:
                                 $letThemThrough = false;
-                                error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                                // error_log("File wasn't of the correct type. '$mediaType' is not an image type.\n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
 
                         if ($letThemThrough == true) {
                             $location_of_file_to_attach_2 = "$directory/". $timestamp . "-" . rand(000,999) . "-$location_two_image_fileName";
                             $location_two_image->moveTo("$location_of_file_to_attach_2");                   
                         } else {
-                            error_log("File failed the test apparently. \n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                            // error_log("File failed the test apparently. \n", 3, "/var/www/html/// error_logs/EEI_errors.log");
                         }
                     }
                 }
@@ -677,10 +677,10 @@
 
             if($mail->send()) {
                 $timestamp = $date->format('U = Y-m-dH:i:s');
-                error_log("Email sent successfully at" . $timestamp . "\n", 3, "/var/www/html/error_logs/EEI_errors.log");
+                // error_log("Email sent successfully at" . $timestamp . "\n", 3, "/var/www/html/// error_logs/EEI_errors.log");
             } else {
-                error_log("Email failed at" . $timestamp, 3, "/var/www/html/error_logs/EEI_errors.log");
-                error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+                // error_log("Email failed at" . $timestamp, 3, "/var/www/html/// error_logs/EEI_errors.log");
+                // error_log("Error details: " . $mail->ErrorInfo, 3, "/var/www/html/// error_logs/EEI_errors.log");
                 echo "Mailer Error: " . $mail->ErrorInfo;
             }
 
