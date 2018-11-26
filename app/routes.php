@@ -170,7 +170,7 @@
             $mail->Subject = "Contact Us Message from EEI site";
             $mail->Body    = $contactEmailBody;
             //Recipients
-            $mail->setFrom("$email", "$name");
+            $mail->setFrom("noreply@eastendink.com", "EastEndInk Site");
             $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
             $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
             $mail->addReplyTo("$email", "$name");
@@ -286,7 +286,7 @@
             $mail->Port = 2525;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom("$email", "$name");
+            $mail->setFrom("noreply@eastendink.com", "EastEndInk Site");
             $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
             $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
             $mail->addReplyTo("$email", "$name");
@@ -656,7 +656,7 @@
             $mail->Port = 2525;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom("$email", "$name");
+            $mail->setFrom("noreply@eastendink.com", "EastEndInk Site");
             $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
             $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
             $mail->addCC('estel@eastendink.com', 'Estel');       // CCing zach for now
