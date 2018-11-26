@@ -286,9 +286,10 @@
             $mail->Port = 2525;                                    // TCP port to connect to
 
             //Recipients
-            $mail->setFrom("noreply@eastendink.com", "EastEndInk Site");
-            $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
-            $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
+            $mail->setFrom("info@eastendink.com", "EastEndInk Site");
+            $mail->addAddress('gil@eastendink.com', 'Gil Lerma');
+            $mail->addAddress('david@eastendink.com', 'David Ford');
+            $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');
             $mail->addReplyTo("$email", "$name");
 
             $vars = [
@@ -310,7 +311,7 @@
                 $responseToSend = $response->withStatus(200);
             } else {
                 $responseToSend = $response->withStatus(404);
-                // error_log("Mailer Error: " . $mail->ErrorInfo, 3, "/var/www/html/error_logs/EEI_errors.log");
+                error_log("Mailer Error: " . $mail->ErrorInfo, 3, "/../../errors/error-log.log");
             }
 
             return $responseToSend;      
