@@ -1,9 +1,10 @@
 jQuery(function($){
 
+	$('#captcha-error').css({ "display": "none" });
+
 	showHomeContactFormSuccess = function() {
-		console.log("Show success stuff....");
-        var replacementWidth = $('#fancy-home-contact-form').width();
-        var replacementHeight = $('#fancy-home-contact-form').height();
+		var replacementWidth = $('#fancy-home-contact-form').width();
+		var replacementHeight = $('#fancy-home-contact-form').height();
 
 		$('#fancy-home-contact-form').css({ "display": "none"});
 		$('#fancy-home-contact-form-success-div').css({ "display": "block", "width": replacementWidth, "height": replacementHeight });
@@ -11,26 +12,35 @@ jQuery(function($){
 
 	var homeContactForm = $('#fancy-home-contact-form');
 
-    homeContactForm.submit(function (e) {
+	homeContactForm.submit(function (e) {
 
-    	console.log("Hitting submit");
+		$('#captcha-error').css({ "display": "none" });
+		console.log("Hitting submit");
 
-        e.preventDefault();
+		var captchaResponse = grecaptcha.getResponse();
+		console.log("Captcha Response: ", captchaResponse);
 
-        $.ajax({
-            type: homeContactForm.attr('method'),
-            url: homeContactForm.attr('action'),
-            data: homeContactForm.serialize(),
-            success: function (data) {
-                console.log('SUCCESS');
-                console.log(data);
-                showHomeContactFormSuccess();
-            },
-            error: function (data) {
-                console.log('An error occurred.');
-                console.log(data);
-            },
-        });
-    });
+		if (captchaResponse.length == 0) {
+			console.log("User did not verify they aren't a bot or they are a bot!!!");
+			$('#captcha-error').css({ "display": "block" });
+			return false;
+		}
 
+		e.preventDefault();
+
+		$.ajax({
+			type: homeContactForm.attr('method'),
+			url: homeContactForm.attr('action'),
+			data: homeContactForm.serialize(),
+			success: function (data) {
+				console.log('SUCCESS');
+				console.log(data);
+				showHomeContactFormSuccess();
+			},
+			error: function (data) {
+				console.log('An error occurred.');
+				console.log(data);
+			},
+		});
+	});
 });

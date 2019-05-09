@@ -600,6 +600,14 @@
 	width: 400px;
 }
 
+.home-contact-us-recaptcha {
+	padding-top: 15px;
+}
+
+.home-contact-us-recaptcha div {
+	margin: 0 auto;
+}
+
 .fancy-contact-us-form-submit-btn {
 	width: 400px;
 	height: 35px;

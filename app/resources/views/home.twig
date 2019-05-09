@@ -281,9 +281,10 @@
 						GET IN TOUCH
 					</h2>
 
-					<form id="fancy-home-contact-form" class="fancy-contact-us-form" action="/home-contact-email" method="POST" enctype="multipart/form-data">
+					<form id="fancy-home-contact-form" class="fancy-contact-us-form" action="/home-contact-email" 
+						method="POST" enctype="multipart/form-data">
 						<h6 class="hide-on-xs contact-us-section-small-text">
-							WE WOULD LOVE TO HEAR FROM YOU. PLEASE DROP US A LINE BELOW IF YOU HAVE ANY QUESTIONS OR CONCERNS.
+							WE WOULD LOVE TO HEAR FROM YOU.
 						</h6>
 						<p class="fancy-form-field-header">NAME</p>
 						<input name="name" type="text" class="fancy-contact-form-text-input"/>
@@ -296,6 +297,15 @@
 
 						<p class="fancy-form-field-header">MESSAGE</p>
 						<textarea name="message" rows="4" columns="50" class="fancy-contact-form-message"></textarea>
+
+						<div id="captcha-error">
+							<h6 style="text-align: center; color: red;">
+								Please help us prevent spam by clicking box next to "I'm not a robot" below
+							</h6>
+						</div>
+
+						<div class="g-recaptcha home-contact-us-recaptcha" 
+							data-sitekey="6Lc1fKIUAAAAAPSWnRh2bonRqDfUUI8_b97iysmK"></div>
 
 						<button type="submit" class="fancy-contact-us-form-submit-btn">
 							SUBMIT
@@ -314,6 +324,7 @@
 		</div>
 	</div>
 
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<script src="./js/auto-size-homepage-splash-area.js"></script>
 	<script src="./js/home-contact-us-send.js"></script>
 

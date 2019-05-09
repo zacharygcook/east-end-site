@@ -36,6 +36,14 @@
   margin-bottom: -2px !important;
 }
 
+.design-contact-us-recaptcha {
+  padding-top: 15px;
+}
+
+.design-contact-us-recaptcha div {
+  margin: 0 auto;
+}
+
 .design-contact-form-submit-btn {
   border: none;
   height: 30px;
