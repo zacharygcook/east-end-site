@@ -172,6 +172,7 @@
             //Recipients
             $mail->setFrom("noreply@eastendink.com", "EastEndInk Site");
             $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
+            $mail->addAddress('sarah@eastendink.com', 'Sarah Conley');
             $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
             $mail->addReplyTo("$email", "$name");
             
@@ -233,8 +234,9 @@
             $mail->Subject = "Design Page Contact Form Submission! From $email";
             $mail->Body    = $contactEmailBody;
             //Recipients
-            $mail->setFrom("$email", "Unkown Name");
+            $mail->setFrom("noreply@eastendink.com", "EastEndInk Site");
             $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
+            $mail->addAddress('sarah@eastendink.com', 'Sarah Conley');
             $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
             $mail->addReplyTo("$email", "Unkown Name");
             
@@ -289,6 +291,7 @@
             $mail->setFrom("info@eastendink.com", "EastEndInk Site");
             $mail->addAddress('gil@eastendink.com', 'Gil Lerma');
             $mail->addAddress('david@eastendink.com', 'David Ford');
+            $mail->addAddress('sarah@eastendink.com', 'Sarah Conley');
             $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');
             $mail->addReplyTo("$email", "$name");
 
@@ -660,6 +663,7 @@
             $mail->setFrom("noreply@eastendink.com", "EastEndInk Site");
             $mail->addAddress('info@eastendink.com', 'East End Ink');     // Add a recipient
             $mail->addCC('zach@zachcookhustles.com', 'Zachary Cook');       // CCing zach for now
+            $mail->addAddress('sarah@eastendink.com', 'Sarah Conley');
             $mail->addCC('estel@eastendink.com', 'Estel');       // CCing zach for now
             $mail->addReplyTo("$email", "$name");
 
